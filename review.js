@@ -66,7 +66,8 @@ const evaluateDirectory = (toReport, path) => {
 
   } else if (typeof toReport === 'string') {
     const { report, status } = evaluateFile(path + toReport);
-    return { [toReport]: { report, status } };
+    const source = fs.readFileSync(path + toReport, 'utf-8');
+    return { [toReport]: { report, status, source } };
 
   } else { // assume it's an object
     // objects represent directories and so only have one key
@@ -78,6 +79,7 @@ const evaluateDirectory = (toReport, path) => {
 }
 
 const evaluation = evaluateDirectory(allJsFiles);
+fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
 
 const renderREADMEs = (evaluated, filePath) => {
@@ -93,8 +95,7 @@ const renderREADMEs = (evaluated, filePath) => {
     const key = Object.keys(evaluated)[0];
     // if (typeof evaluated[key] === 'string') {
     if (evaluated[key].status && evaluated[key].report) {
-      const source = fs.readFileSync(filePath + key, 'utf-8');
-      const encoded = encodeURIComponent(source);
+      const encoded = encodeURIComponent(evaluated[key].source);
       const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
       const deTabbed = sanitized.replace(/%09/g, '%20%20');
       const url = "http://www.pythontutor.com/live.html#code="
@@ -102,9 +103,9 @@ const renderREADMEs = (evaluated, filePath) => {
         + "&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
 
       return '\n## [' + key.split('.js').join('') + '](./' + key + ')\n\n'
-        + '* [open in JS Tutor](' + url + ')\n'
-        + '```js\n' + source + '```\n'
-        + '```' + evaluated[key].report.split('<').join('\<')
+        + '* [open in JS Tutor](' + url + ')\n\n'
+        + '```js\n' + evaluated[key].source + '```\n\n'
+        + '```txt' + evaluated[key].report.split('<').join('\<')
         + '\n```\n';
 
     } else {
@@ -123,8 +124,8 @@ const renderREADMEs = (evaluated, filePath) => {
           }
         })
         .reduce((full, partial) => full + partial, '');
-      const newREADME = '\n# ' + key + '\n'
-        + '\n> ' + now.toDateString() + ', ' + now.toLocaleTimeString() + '\n'
+      const newREADME = '# ' + key + '\n'
+        + '\n> ' + now.toDateString() + ', ' + now.toLocaleTimeString() + '\n\n'
         + index.reduce((list, item) => list + item, '')
         + readmeBody;
 
