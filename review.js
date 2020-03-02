@@ -94,25 +94,48 @@ const evaluateDirectory = (toReport, path) => {
 
     const status = statusOf(evaluated);
 
-    return { [key]: evaluated, status }
+    return {
+      [key]: evaluated,
+      status,
+      timeStamp: (new Date()).toJSON()
+    }
   }
 }
 
 // const evaluation = evaluateDirectory(allJsFiles[Object.keys(allJsFiles)[0]]);
-console.log(allJsFiles)
 const evaluation = evaluateDirectory(allJsFiles);
-console.log(evaluation)
 
-evaluation.timeStamp = (new Date()).toJSON();
-fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
+// fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
 
-const renderREADMEs = (evaluated, filePath) => {
+const generateJSONs = (evaluated, filePath) => {
+  filePath = filePath || './';
+
+  if (Array.isArray(evaluated)) {
+    evaluated
+      .forEach(fileOrDir => generateJSONs(fileOrDir, filePath))
+
+  } else { // assume it's an object
+    // objects represent directories or files and so only have one key
+    const key = Object.keys(evaluated)[0];
+    if (evaluated[key].status && evaluated[key].report) {
+
+    } else {
+      evaluated[key]
+        .forEach(entry => generateJSONs(entry, filePath + key));
+
+      fs.writeFileSync(filePath + key + 'report.json', JSON.stringify(evaluated, null, '  '));
+    }
+  }
+}
+generateJSONs(evaluation)
+
+const generateREADMEs = (evaluated, filePath) => {
   filePath = filePath || './';
 
   if (Array.isArray(evaluated)) {
     return evaluated
-      .map(fileOrDir => renderREADMEs(fileOrDir, filePath))
+      .map(fileOrDir => generateREADMEs(fileOrDir, filePath))
       .reduce((full, partial) => full + partial, '');
 
   } else { // assume it's an object
@@ -152,10 +175,10 @@ const renderREADMEs = (evaluated, filePath) => {
           const pathText = Object.keys(fileOrDir)[0];
           if (path.extname(pathText) === '.js') {
             index.push('* [' + pathText + '](#' + pathText.split('.js').join('') + ') - ' + fileOrDir[pathText].status + '\n');
-            return renderREADMEs(fileOrDir, filePath + key);
+            return generateREADMEs(fileOrDir, filePath + key);
           } else {
             index.push('* [' + pathText + '](./' + pathText + ') - ' + fileOrDir.status + '\n');
-            renderREADMEs(fileOrDir, filePath + key);
+            generateREADMEs(fileOrDir, filePath + key);
             return '';
           }
         })
@@ -170,5 +193,5 @@ const renderREADMEs = (evaluated, filePath) => {
   }
 }
 
-renderREADMEs(evaluation);
-// renderREADMEs(evaluation[Object.keys(evaluation)[0]]);
+generateREADMEs(evaluation);
+// generateREADMEs(evaluation[Object.keys(evaluation)[0]]);
