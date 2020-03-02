@@ -1,7 +1,7 @@
 
 # challenges/
 
-> Mon Mar 02 2020, 4:11:14 PM
+> Mon Mar 02 2020, 4:19:32 PM
 * [array-1.js](#array-1) - error
 * [array-2.js](#array-2) - error
 * [object-1.js](#object-1) - error
@@ -34,7 +34,7 @@ const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 ```
-  ReferenceError: array1 is not defined
+ReferenceError: array1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-1.js:8:25)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -42,9 +42,9 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```
 
 ## [array-2](./array-2.js)
@@ -71,7 +71,7 @@ const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 ```
-  ReferenceError: array1 is not defined
+ReferenceError: array1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-2.js:8:28)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -79,9 +79,9 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```
 
 ## [object-1](./object-1.js)
@@ -109,7 +109,7 @@ const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
 ```
 ```
-  ReferenceError: object1 is not defined
+ReferenceError: object1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-1.js:8:26)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -117,9 +117,9 @@ console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```
 
 ## [object-2](./object-2.js)
@@ -147,7 +147,7 @@ const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
 ```
 ```
-  ReferenceError: object1 is not defined
+ReferenceError: object1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-2.js:8:29)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -155,7 +155,7 @@ console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```

@@ -1,8 +1,6 @@
 const fs = require("fs")
 const path = require("path")
 
-const INDENTATION = '  ';
-
 const BASE_DIRECTORY = process.argv[2]
   ? ('./' + process.argv[2])
   : '.';
@@ -41,8 +39,8 @@ const evaluateFile = (path) => {
     arguments = Array.from(arguments);
     nativeAssert(...arguments);
     report += arguments[0]
-      ? '\n' + INDENTATION + '+ PASS: ' + arguments.slice(1)
-      : '\n' + INDENTATION + '- FAIL: ' + arguments.slice(1);
+      ? '\n' + '+ PASS: ' + arguments.slice(1)
+      : '\n' + '- FAIL: ' + arguments.slice(1);
     if (!arguments[0]) {
       status = 'fail';
     }
@@ -53,9 +51,8 @@ const evaluateFile = (path) => {
     // const code = fs.readFileSync(path, 'utf-8');
     // eval(code);
   } catch (err) {
-    report += '\n' + INDENTATION + err.stack
-      .split(__dirname).join(' [...] ')
-      .split('    ').join(INDENTATION + INDENTATION);
+    report += '\n' + err.stack
+      .split(__dirname).join(' [...] ');
     status = 'error';
   }
   console.assert = nativeAssert;
@@ -115,7 +112,6 @@ const renderREADMEs = (evaluated, filePath) => {
       const index = [];
       const readmeBody = evaluated[key]
         .map(fileOrDir => {
-          console.log(fileOrDir)
           const pathText = Object.keys(fileOrDir)[0];
           if (path.extname(pathText) === '.js') {
             index.push('* [' + pathText + '](#' + pathText.split('.js').join('') + ') - ' + fileOrDir[pathText].status + '\n');

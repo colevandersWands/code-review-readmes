@@ -1,7 +1,7 @@
 
 # reference-vs-value/
 
-> Mon Mar 02 2020, 4:11:14 PM
+> Mon Mar 02 2020, 4:19:32 PM
 * [challenges/](./challenges/)
 * [comparing.js](#comparing) - error
 * [const-reference-types.js](#const-reference-types) - error
@@ -56,21 +56,21 @@ objectTwo.h = 'uh?';
 console.assert(objectOne.h === undefined, 'objectOne does not change when objectTwo does');
 ```
 ```
-  + PASS: alsoArrayOne === arrayOne
-  + PASS: alsoArrayOne[0] === arrayOne[0]
-  + PASS: alsoArrayOne[1] === arrayOne[1]
-  + PASS: arrayTwo !== arrayOne
-  + PASS: arrayTwo[0] === arrayOne[0]
-  + PASS: arrayTwo[1] === arrayOne[1]
-  + PASS: arrayTwo does not change when arrayOne does
-  - FAIL: arrayOne does not change when arrayTwo does
-  + PASS: alsoObjectOne === objectOne
-  + PASS: alsoObjectOne.first === objectOne.first
-  + PASS: alsoObjectOne.second === objectOne.second
-  + PASS: objectTwo !== objectOne
-  + PASS: objectTwo.first === objectOne.first
-  + PASS: objectTwo.second === objectOne.second
-  ReferenceError: alsoObjectTwo is not defined
++ PASS: alsoArrayOne === arrayOne
++ PASS: alsoArrayOne[0] === arrayOne[0]
++ PASS: alsoArrayOne[1] === arrayOne[1]
++ PASS: arrayTwo !== arrayOne
++ PASS: arrayTwo[0] === arrayOne[0]
++ PASS: arrayTwo[1] === arrayOne[1]
++ PASS: arrayTwo does not change when arrayOne does
+- FAIL: arrayOne does not change when arrayTwo does
++ PASS: alsoObjectOne === objectOne
++ PASS: alsoObjectOne.first === objectOne.first
++ PASS: alsoObjectOne.second === objectOne.second
++ PASS: objectTwo !== objectOne
++ PASS: objectTwo.first === objectOne.first
++ PASS: objectTwo.second === objectOne.second
+ReferenceError: alsoObjectTwo is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/comparing.js:41:16)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -78,9 +78,9 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```
 
 ## [const-reference-types](./const-reference-types.js)
@@ -102,7 +102,7 @@ constantArray[1] = 7; // no error
 constantArray = [6]; // error!
 ```
 ```
-  TypeError: Assignment to constant variable.
+TypeError: Assignment to constant variable.
     at Object.<anonymous> ( [...] /reference-vs-value/const-reference-types.js:8:16)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -110,9 +110,9 @@ constantArray = [6]; // error!
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:52:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
-    at  [...] /build-READMEs.js:78:25
+    at evaluateFile ( [...] /build-readmes.js:50:5)
+    at evaluateDirectory ( [...] /build-readmes.js:68:32)
+    at  [...] /build-readmes.js:75:25
 ```
 
 ## [sharing-a-reference](./sharing-a-reference.js)
@@ -155,12 +155,12 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 
 ```
 ```
-  + PASS: new5 stores has been modified
-  + PASS: original variable was not modified
-  + PASS: objectOne has changed after modifying objectTwo
-  + PASS: objectTwo has changed after modifying objectOne
-  + PASS: reassigning objectOne does not affect objectTwo
-  + PASS: arrayOne has changed after modifying arrayTwo
-  + PASS: arrayTwo has changed after modifying arrayOne
-  + PASS: reassigning arrayOne does not affect arrayTwo
++ PASS: new5 stores has been modified
++ PASS: original variable was not modified
++ PASS: objectOne has changed after modifying objectTwo
++ PASS: objectTwo has changed after modifying objectOne
++ PASS: reassigning objectOne does not affect objectTwo
++ PASS: arrayOne has changed after modifying arrayTwo
++ PASS: arrayTwo has changed after modifying arrayOne
++ PASS: reassigning arrayOne does not affect arrayTwo
 ```
