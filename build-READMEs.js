@@ -98,11 +98,18 @@ const renderREADMEs = (evaluated, filePath) => {
         + deTabbed
         + "&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
 
-      return '\n## ' + key + '\n'
-        + '* [source file](./' + key + ')\n'
+      return '\n## [' + key + '](./' + key + ')\n'
         + '* [open in JS Tutor](' + url + ')\n'
+        + '```js' + source + '```\n'
         + '```' + evaluated[key].split('<').join('\<')
         + '\n```\n';
+
+
+      // return '\n## ' + key + '\n'
+      //   + '* [source file](./' + key + ')\n'
+      //   + '* [open in JS Tutor](' + url + ')\n'
+      //   + '```' + evaluated[key].split('<').join('\<')
+      //   + '\n```\n';
 
     } else {
       const now = new Date();
