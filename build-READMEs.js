@@ -14,6 +14,7 @@ const getAllFiles = function (dirPath, objOfDirs, oldPath) {
   var arrayOfFiles = [];
   for (let file of files) {
     if ('/' + file === __filename.split(__dirname).join('')) continue;
+    if (file[0] === '.') continue;
 
     const isDirectory = fs.statSync(dirPath + "/" + file).isDirectory();
     if (!isDirectory && path.extname(file) !== '.js') continue;
@@ -106,15 +107,15 @@ const renderREADMEs = (evaluated, filePath) => {
       const newREADME = '\n# ' + key + '\n'
         + '\n> ' + (new Date()).toDateString() + '\n'
         + evaluated[key]
-          .filter(fileOrDir => {
-            if (path.extname(Object.keys(fileOrDir)[0]) === '.js') {
-              return true;
+          .map(fileOrDir => {
+            const pathText = Object.keys(fileOrDir)[0];
+            if (path.extname(pathText) === '.js') {
+              return renderREADMEs(fileOrDir, filePath + key);
             } else {
               renderREADMEs(fileOrDir, filePath + key);
-              return false;
+              return '\n## [' + pathText + '](' + pathText + ')\n';
             }
           })
-          .map(fileOrDir => renderREADMEs(fileOrDir, filePath + key))
           .reduce((full, partial) => full + partial, '');
 
       fs.writeFileSync(filePath + key + 'README.md', newREADME);

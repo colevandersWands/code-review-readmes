@@ -14,9 +14,9 @@
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:47:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:65:20)
-    at  [...] /build-READMEs.js:72:25
+    at evaluateFile ( [...] /build-READMEs.js:48:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
+    at  [...] /build-READMEs.js:73:25
 ```
 
 ## [array-2.js](./array-2.js)
@@ -30,9 +30,9 @@
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:47:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:65:20)
-    at  [...] /build-READMEs.js:72:25
+    at evaluateFile ( [...] /build-READMEs.js:48:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
+    at  [...] /build-READMEs.js:73:25
 ```
 
 ## [object-1.js](./object-1.js)
@@ -46,9 +46,9 @@
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:47:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:65:20)
-    at  [...] /build-READMEs.js:72:25
+    at evaluateFile ( [...] /build-READMEs.js:48:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
+    at  [...] /build-READMEs.js:73:25
 ```
 
 ## [object-2.js](./object-2.js)
@@ -62,7 +62,7 @@
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:47:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:65:20)
-    at  [...] /build-READMEs.js:72:25
+    at evaluateFile ( [...] /build-READMEs.js:48:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
+    at  [...] /build-READMEs.js:73:25
 ```
