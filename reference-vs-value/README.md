@@ -1,9 +1,11 @@
 
 # reference-vs-value/
 
-> Mon Mar 02 2020, 3:44:01 PM
-
-## [challenges/](challenges/)
+> Mon Mar 02 2020, 4:02:06 PM
+* [challenges/](./challenges/)
+* [comparing.js](#comparing.js) - error
+* [const-reference-types.js](#const-reference-types.js) - error
+* [sharing-a-reference.js](#sharing-a-reference.js) - pass
 
 ## [comparing.js](./comparing.js)
 * [open in JS Tutor](http://www.pythontutor.com/live.html#code=%2F%2F%20comparing%20objects%20and%20arrays%20with%20%3D%3D%3D%20is%20based%20on%20reference%0A%2F%2F%20comparisons%20are%20true%20when%20they%20reference%20the%20same%20thing%20in%20memory%0A%2F%2F%20psst.%20JS%20Tutor%20will%20help%20a%20lot%20with%20this%20example%0A%0A%2F%2F%20examples%20with%20arrays%0A%0Aconst%20arrayOne%20%3D%20%5B'hi'%2C%20'bye'%5D%3B%0Aconst%20alsoArrayOne%20%3D%20arrayOne%3B%0Aconsole.assert%28alsoArrayOne%20%3D%3D%3D%20arrayOne%2C%20'alsoArrayOne%20%3D%3D%3D%20arrayOne'%29%3B%0Aconsole.assert%28alsoArrayOne%5B0%5D%20%3D%3D%3D%20arrayOne%5B0%5D%2C%20'alsoArrayOne%5B0%5D%20%3D%3D%3D%20arrayOne%5B0%5D'%29%3B%0Aconsole.assert%28alsoArrayOne%5B1%5D%20%3D%3D%3D%20arrayOne%5B1%5D%2C%20'alsoArrayOne%5B1%5D%20%3D%3D%3D%20arrayOne%5B1%5D'%29%3B%0A%0A%2F%2F%20two%20arrays%20with%20the%20same%20values%20do%20not%20compare%20to%20true%0Aconst%20arrayTwo%20%3D%20%5B'hi'%2C%20'bye'%5D%3B%0Aconsole.assert%28arrayTwo%20!%3D%3D%20arrayOne%2C%20'arrayTwo%20!%3D%3D%20arrayOne'%29%3B%0Aconsole.assert%28arrayTwo%5B0%5D%20%3D%3D%3D%20arrayOne%5B0%5D%2C%20'arrayTwo%5B0%5D%20%3D%3D%3D%20arrayOne%5B0%5D'%29%3B%0Aconsole.assert%28arrayTwo%5B1%5D%20%3D%3D%3D%20arrayOne%5B1%5D%2C%20'arrayTwo%5B1%5D%20%3D%3D%3D%20arrayOne%5B1%5D'%29%3B%0A%0AalsoArrayOne.push%28'mega'%29%3B%0Aconsole.assert%28arrayTwo%5B2%5D%20%3D%3D%3D%20undefined%2C%20'arrayTwo%20does%20not%20change%20when%20arrayOne%20does'%29%3B%0AarrayTwo.push%28'huh%3F'%29%3B%0Aconsole.assert%28arrayOne%5B2%5D%20%3D%3D%3D%20undefined%2C%20'arrayOne%20does%20not%20change%20when%20arrayTwo%20does'%29%3B%0A%0A%2F%2F%20examples%20with%20objects%0A%0Aconst%20objectOne%20%3D%20%7B%20first%3A%20'hi'%2C%20second%3A%20'bye'%20%7D%3B%0Aconst%20alsoObjectOne%20%3D%20objectOne%3B%0Aconsole.assert%28alsoObjectOne%20%3D%3D%3D%20objectOne%2C%20'alsoObjectOne%20%3D%3D%3D%20objectOne'%29%3B%0Aconsole.assert%28alsoObjectOne.first%20%3D%3D%3D%20objectOne.first%2C%20'alsoObjectOne.first%20%3D%3D%3D%20objectOne.first'%29%3B%0Aconsole.assert%28alsoObjectOne.second%20%3D%3D%3D%20objectOne.second%2C%20'alsoObjectOne.second%20%3D%3D%3D%20objectOne.second'%29%3B%0A%0A%0A%2F%2F%20two%20objects%20with%20the%20same%20values%20do%20not%20compare%20to%20true%0Aconst%20objectTwo%20%3D%20%7B%20first%3A%20'hi'%2C%20second%3A%20'bye'%20%7D%3B%0Aconsole.assert%28objectTwo%20!%3D%3D%20objectOne%2C%20'objectTwo%20!%3D%3D%20objectOne'%29%3B%0Aconsole.assert%28objectTwo.first%20%3D%3D%3D%20objectOne.first%2C%20'objectTwo.first%20%3D%3D%3D%20objectOne.first'%29%3B%0Aconsole.assert%28objectTwo.second%20%3D%3D%3D%20objectOne.second%2C%20'objectTwo.second%20%3D%3D%3D%20objectOne.second'%29%3B%0A%0A%0AalsoObjectOne.m%20%3D%20'ega'%3B%0Aconsole.assert%28alsoObjectTwo.m%20%3D%3D%3D%20undefined%2C%20'objectTwo%20does%20not%20change%20when%20objectOne%20does'%29%3B%0AobjectTwo.h%20%3D%20'uh%3F'%3B%0Aconsole.assert%28objectOne.h%20%3D%3D%3D%20undefined%2C%20'objectOne%20does%20not%20change%20when%20objectTwo%20does'%29%3B%0A&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
@@ -75,9 +77,9 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
 
 ## [const-reference-types.js](./const-reference-types.js)
@@ -106,9 +108,9 @@ constantArray = [6]; // error!
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
 
 ## [sharing-a-reference.js](./sharing-a-reference.js)

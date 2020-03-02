@@ -43,7 +43,11 @@ const evaluateFile = (path) => {
     report += arguments[0]
       ? '\n' + INDENTATION + '+ PASS: ' + arguments.slice(1)
       : '\n' + INDENTATION + '- FAIL: ' + arguments.slice(1);
+    if (!arguments[0]) {
+      status = 'fail';
+    }
   }
+  let status = 'pass';
   try {
     require(path); // using require for callstack
     // const code = fs.readFileSync(path, 'utf-8');
@@ -52,9 +56,10 @@ const evaluateFile = (path) => {
     report += '\n' + INDENTATION + err.stack
       .split(__dirname).join(' [...] ')
       .split('    ').join(INDENTATION + INDENTATION);
+    status = 'error';
   }
   console.assert = nativeAssert;
-  return report;
+  return { report, status };
 }
 
 const evaluateDirectory = (toReport, path) => {
@@ -63,8 +68,8 @@ const evaluateDirectory = (toReport, path) => {
     return toReport.map(fileOrDir => evaluateDirectory(fileOrDir, path))
 
   } else if (typeof toReport === 'string') {
-    const report = evaluateFile(path + toReport);
-    return { [toReport]: report };
+    const { report, status } = evaluateFile(path + toReport);
+    return { [toReport]: { report, status } };
 
   } else { // assume it's an object
     // objects represent directories and so only have one key
@@ -89,7 +94,8 @@ const renderREADMEs = (evaluated, filePath) => {
   } else { // assume it's an object
     // objects represent directories or files and so only have one key
     const key = Object.keys(evaluated)[0];
-    if (typeof evaluated[key] === 'string') {
+    // if (typeof evaluated[key] === 'string') {
+    if (evaluated[key].status && evaluated[key].report) {
       const source = fs.readFileSync(filePath + key, 'utf-8');
       const encoded = encodeURIComponent(source);
       const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
@@ -101,31 +107,30 @@ const renderREADMEs = (evaluated, filePath) => {
       return '\n## [' + key + '](./' + key + ')\n'
         + '* [open in JS Tutor](' + url + ')\n'
         + '```js\n' + source + '```\n'
-        + '```' + evaluated[key].split('<').join('\<')
+        + '```' + evaluated[key].report.split('<').join('\<')
         + '\n```\n';
-
-
-      // return '\n## ' + key + '\n'
-      //   + '* [source file](./' + key + ')\n'
-      //   + '* [open in JS Tutor](' + url + ')\n'
-      //   + '```' + evaluated[key].split('<').join('\<')
-      //   + '\n```\n';
 
     } else {
       const now = new Date();
+      const index = [];
+      const readmeBody = evaluated[key]
+        .map(fileOrDir => {
+          console.log(fileOrDir)
+          const pathText = Object.keys(fileOrDir)[0];
+          if (path.extname(pathText) === '.js') {
+            index.push('* [' + pathText + '](#' + pathText + ') - ' + fileOrDir[pathText].status + '\n');
+            return renderREADMEs(fileOrDir, filePath + key);
+          } else {
+            index.push('* [' + pathText + '](./' + pathText + ')\n');
+            renderREADMEs(fileOrDir, filePath + key);
+            return '';
+          }
+        })
+        .reduce((full, partial) => full + partial, '');
       const newREADME = '\n# ' + key + '\n'
         + '\n> ' + now.toDateString() + ', ' + now.toLocaleTimeString() + '\n'
-        + evaluated[key]
-          .map(fileOrDir => {
-            const pathText = Object.keys(fileOrDir)[0];
-            if (path.extname(pathText) === '.js') {
-              return renderREADMEs(fileOrDir, filePath + key);
-            } else {
-              renderREADMEs(fileOrDir, filePath + key);
-              return '\n## [' + pathText + '](' + pathText + ')\n';
-            }
-          })
-          .reduce((full, partial) => full + partial, '');
+        + index.reduce((list, item) => list + item, '')
+        + readmeBody;
 
       fs.writeFileSync(filePath + key + 'README.md', newREADME);
     }

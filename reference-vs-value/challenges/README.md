@@ -1,7 +1,11 @@
 
 # challenges/
 
-> Mon Mar 02 2020, 3:44:01 PM
+> Mon Mar 02 2020, 4:02:06 PM
+* [array-1.js](#array-1.js) - error
+* [array-2.js](#array-2.js) - error
+* [object-1.js](#object-1.js) - error
+* [object-2.js](#object-2.js) - error
 
 ## [array-1.js](./array-1.js)
 * [open in JS Tutor](http://www.pythontutor.com/live.html#code=console.log%28'%5Cn---%20array%20challenge%3A%201%20---'%29%3B%0A%2F%2F%20psst.%20%20use%20JS%20Tutor%20%26%20the%20debugger!%0A%0A%0A%3B%20%2F%2F%20declare%20and%20assign%20array1%0A%3B%20%2F%2F%20declare%20and%20assign%20array2%0A%0Aconst%20areTheSameArray%20%3D%20array1%20%3D%3D%3D%20array2%3B%0Aconst%20sameZeroValue%20%3D%20array1%5B0%5D%20%3D%3D%3D%20array2%5B0%5D%3B%0Aconst%20zeroValueIsHi%20%3D%20array1%5B0%5D%20%3D%3D%3D%20'hi'%3B%0Aconsole.assert%28areTheSameArray%20%26%26%20sameZeroValue%20%26%26%20zeroValueIsHi%2C%20'Test%201'%29%3B%0A%0A%0A%0Aconst%20index%20%3D%201%3B%0A%2F%2F%20pass%20the%20next%20test%0A%0A%0Aconst%20arraysIndexAreSame%20%3D%20array1%5Bindex%5D%20%3D%3D%3D%20array2%5Bindex%5D%3B%0Aconst%20array1IndexIsBye%20%3D%20array1%5Bindex%5D%20%3D%3D%3D%20'bye'%3B%0Aconsole.assert%28arraysIndexAreSame%20%26%26%20array1IndexIsBye%2C%20'Test%202'%29%3B%0A&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
@@ -37,9 +41,9 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
 
 ## [array-2.js](./array-2.js)
@@ -73,9 +77,9 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
 
 ## [object-1.js](./object-1.js)
@@ -110,9 +114,9 @@ console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
 
 ## [object-2.js](./object-2.js)
@@ -147,7 +151,7 @@ console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /build-READMEs.js:48:5)
-    at evaluateDirectory ( [...] /build-READMEs.js:66:20)
-    at  [...] /build-READMEs.js:73:25
+    at evaluateFile ( [...] /build-READMEs.js:52:5)
+    at evaluateDirectory ( [...] /build-READMEs.js:71:32)
+    at  [...] /build-READMEs.js:78:25
 ```
