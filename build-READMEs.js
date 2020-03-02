@@ -100,7 +100,7 @@ const renderREADMEs = (evaluated, filePath) => {
 
       return '\n## [' + key + '](./' + key + ')\n'
         + '* [open in JS Tutor](' + url + ')\n'
-        + '```js' + source + '```\n'
+        + '```js\n' + source + '```\n'
         + '```' + evaluated[key].split('<').join('\<')
         + '\n```\n';
 
