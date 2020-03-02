@@ -104,7 +104,7 @@ const renderREADMEs = (evaluated, filePath) => {
         + deTabbed
         + "&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
 
-      return '\n## [' + key + '](./' + key + ')\n'
+      return '\n## [' + key.split('.js').join('') + '](./' + key + ')\n\n'
         + '* [open in JS Tutor](' + url + ')\n'
         + '```js\n' + source + '```\n'
         + '```' + evaluated[key].report.split('<').join('\<')
@@ -118,7 +118,7 @@ const renderREADMEs = (evaluated, filePath) => {
           console.log(fileOrDir)
           const pathText = Object.keys(fileOrDir)[0];
           if (path.extname(pathText) === '.js') {
-            index.push('* [' + pathText + '](#' + pathText + ') - ' + fileOrDir[pathText].status + '\n');
+            index.push('* [' + pathText + '](#' + pathText.split('.js').join('') + ') - ' + fileOrDir[pathText].status + '\n');
             return renderREADMEs(fileOrDir, filePath + key);
           } else {
             index.push('* [' + pathText + '](./' + pathText + ')\n');
