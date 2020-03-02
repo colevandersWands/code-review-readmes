@@ -98,8 +98,9 @@ const renderREADMEs = (evaluated, filePath) => {
         + deTabbed
         + "&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
 
-      return '\n## [' + key + '](./' + key + ')\n'
-        + '[study in JS Tutor](' + url + ')\n'
+      return '\n## ' + key + '\n'
+        + '* [source file](./' + key + ')\n'
+        + '* [open in JS Tutor](' + url + ')\n'
         + '```' + evaluated[key].split('<').join('\<')
         + '\n```\n';
 
