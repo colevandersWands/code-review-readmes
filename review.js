@@ -59,25 +59,44 @@ const evaluateFile = (path) => {
 }
 
 const evaluateDirectory = (toReport, path) => {
-  path = path || '.';
-  if (Array.isArray(toReport)) {
-    return toReport.map(fileOrDir => evaluateDirectory(fileOrDir, path))
-
-  } else if (typeof toReport === 'string') {
+  path = path || './';
+  if (typeof toReport === 'string') {
     const { report, status } = evaluateFile(path + toReport);
     const source = fs.readFileSync(path + toReport, 'utf-8');
     return { [toReport]: { report, status, source } };
 
+  } else if (Array.isArray(toReport)) {
+    return toReport.map(fileOrDir => evaluateDirectory(fileOrDir, path))
+
   } else { // assume it's an object
     // objects represent directories and so only have one key
     const key = Object.keys(toReport)[0];
+
     const evaluated = toReport[key]
       .map(fileOrDir => evaluateDirectory(fileOrDir, path + key));
-    return { [key]: evaluated }
+
+    const statusOf = fileOrDir => {
+      if (Array.isArray(fileOrDir)) {
+        return fileOrDir
+          .map(next => statusOf(next))
+          .reduce((runningStat, nextStat) => {
+            if (runningStat === 'error') return 'error';
+            if (runningStat === 'fail') return 'fail';
+            return nextStat;
+          }, '');
+      } else {
+        const key = Object.keys(fileOrDir)[0];
+        return fileOrDir[key].status;
+      }
+    }
+
+    const status = statusOf(evaluated);
+
+    return { [key]: evaluated, status }
   }
 }
 
-const evaluation = evaluateDirectory(allJsFiles);
+const evaluation = evaluateDirectory(allJsFiles[Object.keys(allJsFiles)[0]]);
 evaluation.timeStamp = (new Date()).toJSON();
 fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
@@ -129,7 +148,7 @@ const renderREADMEs = (evaluated, filePath) => {
             index.push('* [' + pathText + '](#' + pathText.split('.js').join('') + ') - ' + fileOrDir[pathText].status + '\n');
             return renderREADMEs(fileOrDir, filePath + key);
           } else {
-            index.push('* [' + pathText + '](./' + pathText + ')\n');
+            index.push('* [' + pathText + '](./' + pathText + ') - ' + fileOrDir.status + '\n');
             renderREADMEs(fileOrDir, filePath + key);
             return '';
           }
@@ -144,4 +163,6 @@ const renderREADMEs = (evaluated, filePath) => {
     }
   }
 }
-renderREADMEs(evaluation[Object.keys(evaluation)[0]]);
+
+renderREADMEs(evaluation);
+// renderREADMEs(evaluation[Object.keys(evaluation)[0]]);

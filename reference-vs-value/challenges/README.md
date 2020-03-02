@@ -1,6 +1,6 @@
 # challenges/
 
-> Mon Mar 02 2020, 4:49:12 PM
+> Mon Mar 02 2020, 5:32:30 PM
 
 * [array-1.js](#array-1) - error
 * [array-2.js](#array-2) - error
@@ -45,8 +45,8 @@ x ReferenceError: array1 is not defined
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```
 
 ## [array-2](./array-2.js)
@@ -84,8 +84,8 @@ x ReferenceError: array1 is not defined
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```
 
 ## [object-1](./object-1.js)
@@ -124,8 +124,8 @@ x ReferenceError: object1 is not defined
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```
 
 ## [object-2](./object-2.js)
@@ -164,6 +164,6 @@ x ReferenceError: object1 is not defined
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```

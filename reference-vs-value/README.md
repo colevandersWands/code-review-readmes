@@ -1,8 +1,8 @@
 # reference-vs-value/
 
-> Mon Mar 02 2020, 4:49:12 PM
+> Mon Mar 02 2020, 5:32:30 PM
 
-* [challenges/](./challenges/)
+* [challenges/](./challenges/) - error
 * [comparing.js](#comparing) - error
 * [const-reference-types.js](#const-reference-types) - error
 * [sharing-a-reference.js](#sharing-a-reference) - pass
@@ -81,8 +81,8 @@ x ReferenceError: alsoObjectTwo is not defined
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```
 
 ## [const-reference-types](./const-reference-types.js)
@@ -115,8 +115,8 @@ x TypeError: Assignment to constant variable.
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:67:32)
-    at  [...] /review.js:75:25
+    at evaluateDirectory ( [...] /review.js:64:32)
+    at  [...] /review.js:76:25
 ```
 
 ## [sharing-a-reference](./sharing-a-reference.js)
