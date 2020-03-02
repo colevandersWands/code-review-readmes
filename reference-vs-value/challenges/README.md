@@ -1,6 +1,6 @@
 # challenges/
 
-> Mon Mar 02 2020, 4:38:08 PM
+> Mon Mar 02 2020, 4:49:12 PM
 
 * [array-1.js](#array-1) - error
 * [array-2.js](#array-2) - error
@@ -36,7 +36,7 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 
 ```txt
-ReferenceError: array1 is not defined
+x ReferenceError: array1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-1.js:8:25)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -44,9 +44,9 @@ ReferenceError: array1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```
 
 ## [array-2](./array-2.js)
@@ -75,7 +75,7 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 
 ```txt
-ReferenceError: array1 is not defined
+x ReferenceError: array1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-2.js:8:28)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -83,9 +83,9 @@ ReferenceError: array1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```
 
 ## [object-1](./object-1.js)
@@ -115,7 +115,7 @@ console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
 ```
 
 ```txt
-ReferenceError: object1 is not defined
+x ReferenceError: object1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-1.js:8:26)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -123,9 +123,9 @@ ReferenceError: object1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```
 
 ## [object-2](./object-2.js)
@@ -155,7 +155,7 @@ console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
 ```
 
 ```txt
-ReferenceError: object1 is not defined
+x ReferenceError: object1 is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-2.js:8:29)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -163,7 +163,7 @@ ReferenceError: object1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```

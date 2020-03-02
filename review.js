@@ -33,14 +33,12 @@ const allJsFiles = getAllFiles(BASE_DIRECTORY);
 
 
 const evaluateFile = (path) => {
-  let report = '';
+  let report = [];
   const nativeAssert = console.assert;
   console.assert = function () {
     arguments = Array.from(arguments);
     nativeAssert(...arguments);
-    report += arguments[0]
-      ? '\n' + '+ PASS: ' + arguments.slice(1)
-      : '\n' + '- FAIL: ' + arguments.slice(1);
+    report.push(arguments);
     if (!arguments[0]) {
       status = 'fail';
     }
@@ -51,8 +49,9 @@ const evaluateFile = (path) => {
     // const code = fs.readFileSync(path, 'utf-8');
     // eval(code);
   } catch (err) {
-    report += '\n' + err.stack
-      .split(__dirname).join(' [...] ');
+    report.push(err.stack
+      .split(__dirname).join(' [...] ')
+    );
     status = 'error';
   }
   console.assert = nativeAssert;
@@ -79,6 +78,7 @@ const evaluateDirectory = (toReport, path) => {
 }
 
 const evaluation = evaluateDirectory(allJsFiles);
+evaluation.timeStamp = (new Date()).toJSON();
 fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
 
@@ -105,7 +105,18 @@ const renderREADMEs = (evaluated, filePath) => {
       return '\n## [' + key.split('.js').join('') + '](./' + key + ')\n\n'
         + '* [open in JS Tutor](' + url + ')\n\n'
         + '```js\n' + evaluated[key].source + '```\n\n'
-        + '```txt' + evaluated[key].report.split('<').join('\<')
+        + '```txt' + evaluated[key].report
+          .map(entry => {
+            if (typeof entry === 'string') {
+              return '\nx ' + entry;
+            }
+            if (entry[0]) { // it's an assertion array
+              return '\n+ PASS: ' + entry.slice(1).toString().split(',').join(', ');
+            } else {
+              return '\n- FAIL: ' + entry.slice(1).toString().split(',').join(', ');
+            }
+          })
+          .join('')
         + '\n```\n';
 
     } else {

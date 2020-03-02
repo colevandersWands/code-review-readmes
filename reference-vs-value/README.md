@@ -1,6 +1,6 @@
 # reference-vs-value/
 
-> Mon Mar 02 2020, 4:38:08 PM
+> Mon Mar 02 2020, 4:49:12 PM
 
 * [challenges/](./challenges/)
 * [comparing.js](#comparing) - error
@@ -72,7 +72,7 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
 + PASS: objectTwo !== objectOne
 + PASS: objectTwo.first === objectOne.first
 + PASS: objectTwo.second === objectOne.second
-ReferenceError: alsoObjectTwo is not defined
+x ReferenceError: alsoObjectTwo is not defined
     at Object.<anonymous> ( [...] /reference-vs-value/comparing.js:41:16)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -80,9 +80,9 @@ ReferenceError: alsoObjectTwo is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```
 
 ## [const-reference-types](./const-reference-types.js)
@@ -106,7 +106,7 @@ constantArray = [6]; // error!
 ```
 
 ```txt
-TypeError: Assignment to constant variable.
+x TypeError: Assignment to constant variable.
     at Object.<anonymous> ( [...] /reference-vs-value/const-reference-types.js:8:16)
     at Module._compile (internal/modules/cjs/loader.js:777:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
@@ -114,9 +114,9 @@ TypeError: Assignment to constant variable.
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:50:5)
-    at evaluateDirectory ( [...] /review.js:68:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:48:5)
+    at evaluateDirectory ( [...] /review.js:67:32)
+    at  [...] /review.js:75:25
 ```
 
 ## [sharing-a-reference](./sharing-a-reference.js)
