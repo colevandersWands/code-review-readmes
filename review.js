@@ -83,7 +83,9 @@ const evaluateDirectory = (toReport, path) => {
             if (runningStat === 'error') return 'error';
             if (runningStat === 'fail') return 'fail';
             return nextStat;
-          }, '');
+          }, 'pass');
+      } else if (fileOrDir.status) {
+        return fileOrDir.status;
       } else {
         const key = Object.keys(fileOrDir)[0];
         return fileOrDir[key].status;
@@ -96,13 +98,17 @@ const evaluateDirectory = (toReport, path) => {
   }
 }
 
-const evaluation = evaluateDirectory(allJsFiles[Object.keys(allJsFiles)[0]]);
+// const evaluation = evaluateDirectory(allJsFiles[Object.keys(allJsFiles)[0]]);
+console.log(allJsFiles)
+const evaluation = evaluateDirectory(allJsFiles);
+console.log(evaluation)
+
 evaluation.timeStamp = (new Date()).toJSON();
 fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
 
 const renderREADMEs = (evaluated, filePath) => {
-  filePath = filePath || '';
+  filePath = filePath || './';
 
   if (Array.isArray(evaluated)) {
     return evaluated

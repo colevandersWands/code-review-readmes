@@ -1,6 +1,6 @@
 # challenges/
 
-> Mon Mar 02 2020, 5:32:30 PM
+> Mon Mar 02 2020, 5:44:48 PM
 
 * [array-1.js](#array-1) - error
 * [array-2.js](#array-2) - error
