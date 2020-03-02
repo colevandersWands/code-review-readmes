@@ -1,7 +1,7 @@
 
 # side-effects/
 
-> Mon Mar 02 2020
+> Mon Mar 02 2020, 3:39:11 PM
 
 ## avoiding-side-effects.js
 * [source file](./avoiding-side-effects.js)

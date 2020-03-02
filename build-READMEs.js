@@ -105,8 +105,9 @@ const renderREADMEs = (evaluated, filePath) => {
         + '\n```\n';
 
     } else {
+      const now = new Date();
       const newREADME = '\n# ' + key + '\n'
-        + '\n> ' + (new Date()).toDateString() + '\n'
+        + '\n> ' + now.toDateString() + ', ' + now.toLocaleTimeString() + '\n'
         + evaluated[key]
           .map(fileOrDir => {
             const pathText = Object.keys(fileOrDir)[0];
