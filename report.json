@@ -1,13 +1,13 @@
 {
   "path": "./",
   "status": 3,
-  "time": "2020-03-03T22:04:34.560Z",
+  "time": "2020-03-03T22:08:11.432Z",
   "files": null,
   "dirs": [
     {
       "path": "./reference-vs-value/",
       "status": 2,
-      "time": "2020-03-03T22:04:34.551Z",
+      "time": "2020-03-03T22:08:11.424Z",
       "files": [
         {
           "path": "./reference-vs-value/comparing.js",
@@ -29,7 +29,7 @@
         {
           "path": "./reference-vs-value/challenges/",
           "status": 2,
-          "time": "2020-03-03T22:04:34.551Z",
+          "time": "2020-03-03T22:08:11.423Z",
           "files": [
             {
               "path": "./reference-vs-value/challenges/array-1.js",
@@ -59,7 +59,7 @@
     {
       "path": "./side-effects/",
       "status": 3,
-      "time": "2020-03-03T22:04:34.559Z",
+      "time": "2020-03-03T22:08:11.431Z",
       "files": [
         {
           "path": "./side-effects/avoiding-side-effects.js",
@@ -87,7 +87,7 @@
     {
       "path": "./test-cases/",
       "status": 1,
-      "time": "2020-03-03T22:04:34.560Z",
+      "time": "2020-03-03T22:08:11.432Z",
       "files": [
         {
           "path": "./test-cases/evens.js",

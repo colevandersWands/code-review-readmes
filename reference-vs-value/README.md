@@ -1,6 +1,8 @@
+<div id='top'></div>
+
 # reference-vs-value/ - error
 
-> Tue Mar 03 2020, 11:04:34 PM
+> Tue Mar 03 2020, 11:08:11 PM
 
 ### Exercises:
 
@@ -89,7 +91,7 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
 ---
 
@@ -126,7 +128,7 @@ constantArray = [6]; // error!
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
 ---
 
@@ -181,5 +183,5 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 

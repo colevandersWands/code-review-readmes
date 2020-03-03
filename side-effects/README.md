@@ -1,6 +1,8 @@
+<div id='top'></div>
+
 # side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 11:04:34 PM
+> Tue Mar 03 2020, 11:08:11 PM
 
 ### Exercises:
 
@@ -72,7 +74,7 @@ console.assert(globalObject !== updatedObject, "... because they're the same thi
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
 ---
 
@@ -131,7 +133,7 @@ console.assert(initialObject.b === 2, 'object: fifth');
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
 ---
 
@@ -213,7 +215,7 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
 ---
 
@@ -266,5 +268,5 @@ console.assert(globalObject === updatedObject, "... because they're the same thi
 
 ```
 
-[TOP](#exercises)
+[TOP](#top)
 
