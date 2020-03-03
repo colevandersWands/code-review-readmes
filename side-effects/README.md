@@ -1,8 +1,8 @@
+<text id='top'></text>
+
 # side-effects/ - syntaxError
 
-<div id='top'></div>
-
-> Tue Mar 03 2020, 11:11:14 PM
+> Tue Mar 03 2020, 11:17:34 PM
 
 ### Exercises:
 
