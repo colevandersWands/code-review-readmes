@@ -135,7 +135,7 @@ const evaluation = evaluateDirectory(allJsFiles);
 
 // --- write reports into each subdirectory ---
 
-const writeJsonReports = (report) => {
+const writeJsonReportsRecursive = (report) => {
 
   if (report.dirs) {
     report.dirs
@@ -150,7 +150,26 @@ const writeJsonReports = (report) => {
 
 };
 
-writeJsonReports(evaluation);
+
+const writeJsonReportsLight = (report) => {
+  const reportMinusFileReports = JSON.parse(JSON.stringify(
+    report,
+    (key, value) => (key === 'report'
+      || key === 'time')
+      ? undefined
+      : value
+    , ''));
+
+  reportMinusFileReports.time = (new Date()).toJSON();
+
+  fs.writeFile(
+    report.path + 'report.json',
+    JSON.stringify(reportMinusFileReports, null, '  '),
+    (err) => { if (err) { console.log(err) } }
+  );
+}
+
+writeJsonReportsLight(evaluation);
 
 
 // --- write README's into each subdirectory ---
@@ -172,13 +191,13 @@ const generateFileSectionMd = (fileReport) => {
   const relPath = fileReport.path.split('/').pop();
   const header = `## [${relPath}](./${relPath}) - ${interpret(fileReport.status)}`;
 
-  const encoded = encodeURIComponent(fileReport.source);
-  const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
-  const deTabbed = sanitized.replace(/%09/g, '%20%20');
-  const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
-    + deTabbed
-    + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
-  const jsTutorLink = `* [open in JS Tutor](${jsTutorUrl})`
+  // const encoded = encodeURIComponent(fileReport.source);
+  // const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
+  // const deTabbed = sanitized.replace(/%09/g, '%20%20');
+  // const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
+  //   + deTabbed
+  //   + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+  // const jsTutorLink = `* [open in JS Tutor](${jsTutorUrl})`
 
   const renderedReport = fileReport.report
     .map(entry => {
@@ -205,7 +224,7 @@ const generateFileSectionMd = (fileReport) => {
 
   return divider + '\n\n'
     + header + '\n\n'
-    + jsTutorLink + '\n\n'
+    // + jsTutorLink + '\n\n'
     + report + '\n\n'
     + source + '\n';
 }
