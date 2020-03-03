@@ -152,19 +152,16 @@ const writeJsonReportsRecursive = (report) => {
 
 
 const writeJsonReportsLight = (report) => {
-  const reportMinusFileReports = JSON.parse(JSON.stringify(
+  const reportMinusFileReports = JSON.stringify(
     report,
-    (key, value) => (key === 'report'
-      || key === 'time')
+    (key, value) => key === 'report'
       ? undefined
       : value
-    , ''));
-
-  reportMinusFileReports.time = (new Date()).toJSON();
+    , '  ');
 
   fs.writeFile(
     report.path + 'report.json',
-    JSON.stringify(reportMinusFileReports, null, '  '),
+    reportMinusFileReports,
     (err) => { if (err) { console.log(err) } }
   );
 }
