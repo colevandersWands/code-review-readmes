@@ -6,13 +6,13 @@
   <title>side-effects/</title>
   <style>
     textarea {
-      height: 80vh;
+      height: 75vh;
       width: 95vw;
     }
   </style>
   <script>
     function inJsTutor(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const encoded = encodeURIComponent(source);
       const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
       const deTabbed = sanitized.replace(/%09/g, '%20%20');
@@ -24,7 +24,7 @@
   </script>
   <script>
     function inDebugger(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const debuggered = "debugger; // injected by review.js\n\n" + source;
       eval(debuggered);
     }
@@ -34,11 +34,11 @@
 <body>
 
   <header>
-    <h1>side-effects/ - error</h1>
-    <code>Tue Mar 03 2020, 8:55:12 PM</code>
+    <h1 id='top'>side-effects/ - error</h1>
+    <code>Tue Mar 03 2020, 9:07:24 PM</code>
   </header>
   <section id='table-of-contents'>
-    <h3>Exercises:</h3><br>
+    <h3>Exercises:</h3>
     <ul>
       <li><a href='#avoiding-side-effects.js'>avoiding-side-effects.js</a> - error</li>
       <li><a href='#challenges.js'>challenges.js</a> - fail</li>
@@ -96,6 +96,9 @@ console.assert(globalObject.a === 1, '... but so is the global object ...');
 console.assert(globalObject !== updatedObject, "... because they're the same thing!");
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -146,6 +149,9 @@ console.assert(initialObject.a === 1, 'object: fourth');
 console.assert(initialObject.b === 2, 'object: fifth');
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -215,6 +221,9 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -263,6 +272,9 @@ console.assert(globalObject.a === 'hi!', '... but so is the global object ...');
 console.assert(globalObject === updatedObject, "... because they're the same thing!");
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 

@@ -6,13 +6,13 @@
   <title>challenges/</title>
   <style>
     textarea {
-      height: 80vh;
+      height: 75vh;
       width: 95vw;
     }
   </style>
   <script>
     function inJsTutor(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const encoded = encodeURIComponent(source);
       const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
       const deTabbed = sanitized.replace(/%09/g, '%20%20');
@@ -24,7 +24,7 @@
   </script>
   <script>
     function inDebugger(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const debuggered = "debugger; // injected by review.js\n\n" + source;
       eval(debuggered);
     }
@@ -34,11 +34,11 @@
 <body>
 
   <header>
-    <h1>challenges/ - error</h1>
-    <code>Tue Mar 03 2020, 8:55:12 PM</code>
+    <h1 id='top'>challenges/ - error</h1>
+    <code>Tue Mar 03 2020, 9:07:24 PM</code>
   </header>
   <section id='table-of-contents'>
-    <h3>Exercises:</h3><br>
+    <h3>Exercises:</h3>
     <ul>
       <li><a href='#array-1.js'>array-1.js</a> - error</li>
       <li><a href='#array-2.js'>array-2.js</a> - error</li>
@@ -81,6 +81,9 @@ const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -113,6 +116,9 @@ const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -146,6 +152,9 @@ const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 
@@ -179,6 +188,9 @@ const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
 
     </textarea>
+    <br>
+    <br>
+    <a href='#top'>TOP</a>
   </section>
   <br>
 

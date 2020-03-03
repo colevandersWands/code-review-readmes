@@ -286,14 +286,21 @@ const generateFileSectionHtml = (fileReport) => {
 
   const textArea = `<textarea id="${fileReport.path}">\n${fileReport.source}\n    </textarea>`;
 
+  const topLink = `<a href='#top'>TOP</a>`;
+
   return `
   ${divider}
 
   <section  id="${relPath}">
     ${header}
     ${debuggerButton}
-    ${jsTutorButton}\n    <br>\n    <br>
+    ${jsTutorButton}
+    <br>
+    <br>
     ${textArea}
+    <br>
+    <br>
+    ${topLink}
   </section>`;
 }
 
@@ -318,14 +325,14 @@ const generateIndexHtml = (report) => {
 
   const textAreaStyle = `<style>
     textarea {
-      height: 80vh;
+      height: 75vh;
       width: 95vw;
     }
   </style>`;
 
   const inJsTutorScript = `<script>
     function inJsTutor(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const encoded = encodeURIComponent(source);
       const sanitized = encoded.replace(/\\(/g, '%28').replace(/\\)/g, '%29');
       const deTabbed = sanitized.replace(/%09/g, '%20%20');
@@ -338,7 +345,7 @@ const generateIndexHtml = (report) => {
 
   const inDebuggerScript = `<script>
     function inDebugger(id) {
-      const source = document.getElementById(id).innerHTML;
+      const source = document.getElementById(id).value;
       const debuggered = "debugger; // injected by review.js\\n\\n" + source;
       eval(debuggered);
     }
@@ -353,7 +360,7 @@ const generateIndexHtml = (report) => {
     + '</head>\n';
 
   const header = `<header>
-    <h1>${dirName(report.path)} - ${interpret(report.status)}</h1>
+    <h1 id='top'>${dirName(report.path)} - ${interpret(report.status)}</h1>
     <code>${NOW.toDateString()}, ${NOW.toLocaleTimeString()}</code>
   </header>`;
 
@@ -383,7 +390,7 @@ const generateIndexHtml = (report) => {
 
   const tableOfContents = index
     ? ("<section id='table-of-contents'>\n"
-      + "    <h3>Exercises:</h3><br>\n"
+      + "    <h3>Exercises:</h3>\n"
       + '    ' + index + '\n'
       + "  </section>")
     : '';
