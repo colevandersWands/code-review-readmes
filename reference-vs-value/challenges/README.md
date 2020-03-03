@@ -1,6 +1,6 @@
 # challenges/ - error
 
-> Tue Mar 03 2020, 1:07:36 PM
+> Tue Mar 03 2020, 1:14:58 PM
 
 * [array-1.js](#array-1---error) - error
 * [array-2.js](#array-2---error) - error
@@ -39,18 +39,16 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 
 ```txt
-x Error: Cannot find module './challenges/array-1.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
+x ReferenceError: array1 is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-1.js:8:25)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
-    at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at  [...] /review.js:104:19
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
 ```
 
@@ -83,18 +81,16 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 ```
 
 ```txt
-x Error: Cannot find module './challenges/array-2.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
+x ReferenceError: array1 is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/challenges/array-2.js:8:28)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
-    at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at  [...] /review.js:104:19
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
 ```
 
@@ -128,18 +124,16 @@ console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
 ```
 
 ```txt
-x Error: Cannot find module './challenges/object-1.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
+x ReferenceError: object1 is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-1.js:8:26)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
-    at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at  [...] /review.js:104:19
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
 ```
 
@@ -173,18 +167,16 @@ console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
 ```
 
 ```txt
-x Error: Cannot find module './challenges/object-2.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
+x ReferenceError: object1 is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/challenges/object-2.js:8:29)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
-    at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at  [...] /review.js:104:19
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
 ```
 

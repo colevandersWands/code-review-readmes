@@ -1,11 +1,11 @@
-# ./ - error
+# reference-vs-value/ - error
 
-> Tue Mar 03 2020, 1:07:36 PM
+> Tue Mar 03 2020, 1:14:58 PM
 
 * [challenges/](./challenges/) - error
 * [comparing.js](#comparing---error) - error
 * [const-reference-types.js](#const-reference-types---error) - error
-* [sharing-a-reference.js](#sharing-a-reference---error) - error
+* [sharing-a-reference.js](#sharing-a-reference---pass) - pass
 
 ---
 
@@ -61,19 +61,31 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
 ```
 
 ```txt
-x Error: Cannot find module './comparing.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
++ PASS: alsoArrayOne === arrayOne
++ PASS: alsoArrayOne[0] === arrayOne[0]
++ PASS: alsoArrayOne[1] === arrayOne[1]
++ PASS: arrayTwo !== arrayOne
++ PASS: arrayTwo[0] === arrayOne[0]
++ PASS: arrayTwo[1] === arrayOne[1]
++ PASS: arrayTwo does not change when arrayOne does
+- FAIL: arrayOne does not change when arrayTwo does
++ PASS: alsoObjectOne === objectOne
++ PASS: alsoObjectOne.first === objectOne.first
++ PASS: alsoObjectOne.second === objectOne.second
++ PASS: objectTwo !== objectOne
++ PASS: objectTwo.first === objectOne.first
++ PASS: objectTwo.second === objectOne.second
+x ReferenceError: alsoObjectTwo is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/comparing.js:41:16)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at Object.<anonymous> ( [...] /review.js:136:20)
-    at Module._compile (internal/modules/cjs/loader.js:777:30)
 ```
 
 ---
@@ -100,24 +112,22 @@ constantArray = [6]; // error!
 ```
 
 ```txt
-x Error: Cannot find module './const-reference-types.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
+x TypeError: Assignment to constant variable.
+    at Object.<anonymous> ( [...] /reference-vs-value/const-reference-types.js:8:16)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
+    at evaluateFile ( [...] /review.js:69:5)
+    at  [...] /review.js:90:24
     at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at Object.<anonymous> ( [...] /review.js:136:20)
-    at Module._compile (internal/modules/cjs/loader.js:777:30)
 ```
 
 ---
 
-## [sharing-a-reference](./sharing-a-reference.js) - error
+## [sharing-a-reference](./sharing-a-reference.js) - pass
 
 * [open in JS Tutor](http://www.pythontutor.com/live.html#code=%2F%2F%20primitives%20are%20stored%20%22by%20value%22%2C%20connected%20to%20one%20variable%0A%2F%2F%20%20assigning%20a%20primitive%20to%20a%20new%20variable%20makes%20a%20copy%20of%20it%0A%2F%2F%20%20modifying%20the%20new%20variable%20does%20not%20change%20the%20old%20one%0A%0Aconst%20number5%20%3D%205%3B%0Alet%20new5%20%3D%20number5%3B%0Anew5%20%3D%20new5%20%2B%201%3B%0Aconsole.assert%28new5%20%3D%3D%3D%206%2C%20'new5%20stores%20has%20been%20modified'%29%3B%0Aconsole.assert%28number5%20%3D%3D%3D%205%2C%20'original%20variable%20was%20not%20modified'%29%3B%0A%0A%0A%2F%2F%20objects%20%26%20arrays%20are%20stored%20by%20reference%0A%2F%2F%20%20both%20variables%20reference%20the%20same%20object%20in%20memory%0A%2F%2F%20%20modifying%20on%20variable%20changes%20both%0A%0Alet%20objectOne%20%3D%20%7B%7D%3B%0Aconst%20objectTwo%20%3D%20objectOne%3B%0AobjectTwo.x%20%3D%206%3B%0Aconsole.assert%28objectOne.x%20%3D%3D%3D%206%2C%20'objectOne%20has%20changed%20after%20modifying%20objectTwo'%29%3B%0AobjectOne.y%20%3D%20'hi!'%3B%0Aconsole.assert%28objectTwo.y%20%3D%3D%3D%20'hi!'%2C%20'objectTwo%20has%20changed%20after%20modifying%20objectOne'%29%3B%0AobjectOne%20%3D%20undefined%3B%0Aconsole.assert%28objectTwo%20!%3D%3D%20undefined%2C%20'reassigning%20objectOne%20does%20not%20affect%20objectTwo'%29%3B%0A%0Alet%20arrayOne%20%3D%20%5B%5D%3B%0Aconst%20arrayTwo%20%3D%20arrayOne%3B%0AarrayTwo%5B0%5D%20%3D%207%3B%0Aconsole.assert%28arrayOne%5B0%5D%20%3D%3D%3D%207%2C%20'arrayOne%20has%20changed%20after%20modifying%20arrayTwo'%29%3B%0AarrayOne%5B1%5D%20%3D%20'bye!'%3B%0Aconsole.assert%28arrayTwo%5B1%5D%20%3D%3D%3D%20'bye!'%2C%20'arrayTwo%20has%20changed%20after%20modifying%20arrayOne'%29%3B%0AarrayOne%20%3D%20undefined%3B%0Aconsole.assert%28arrayTwo%20!%3D%3D%20undefined%2C%20'reassigning%20arrayOne%20does%20not%20affect%20arrayTwo'%29%3B%0A%0A%0A&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
 
@@ -160,18 +170,13 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 ```
 
 ```txt
-x Error: Cannot find module './sharing-a-reference.js'
-Require stack:
--  [...] /review.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:625:15)
-    at Function.Module._load (internal/modules/cjs/loader.js:527:27)
-    at Module.require (internal/modules/cjs/loader.js:683:19)
-    at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:78:5)
-    at  [...] /review.js:99:24
-    at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:99:8)
-    at Object.<anonymous> ( [...] /review.js:136:20)
-    at Module._compile (internal/modules/cjs/loader.js:777:30)
++ PASS: new5 stores has been modified
++ PASS: original variable was not modified
++ PASS: objectOne has changed after modifying objectTwo
++ PASS: objectTwo has changed after modifying objectOne
++ PASS: reassigning objectOne does not affect objectTwo
++ PASS: arrayOne has changed after modifying arrayTwo
++ PASS: arrayTwo has changed after modifying arrayOne
++ PASS: reassigning arrayOne does not affect arrayTwo
 ```
 
