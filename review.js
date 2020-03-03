@@ -157,14 +157,12 @@ const interpret = status => status === 0
       ? 'error'
       : 'no status';
 
-const generateFileSection = (fileReport) => {
+const generateFileSectionMd = (fileReport) => {
 
   const divider = '---';
 
   const relPath = fileReport.path.split('/').pop();
-  const localHref = relPath
-    .split('.js').join('');
-  const header = `## [${localHref}](./${relPath}) - ${interpret(fileReport.status)}`;
+  const header = `## [${relPath}](./${relPath}) - ${interpret(fileReport.status)}`;
 
   const encoded = encodeURIComponent(fileReport.source);
   const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
@@ -237,7 +235,7 @@ const generateReadmes = (report) => {
     ? report.files
       .map(file => {
         const relPath = file.path.split('/').pop();
-        const localHref = relPath.split('.js').join('');
+        const localHref = relPath.split('.').join('');
         return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
@@ -252,7 +250,7 @@ const generateReadmes = (report) => {
   const fileSections = !report.files
     ? ''
     : report.files
-      .map(fileReport => generateFileSection(fileReport))
+      .map(fileReport => generateFileSectionMd(fileReport))
       .reduce((body, section) => body + section + '\n', '');
 
   const newReadme = top + '\n\n'
@@ -268,5 +266,103 @@ const generateReadmes = (report) => {
 };
 
 generateReadmes(evaluation);
+
+
+
+// --- generate index.html's ---
+
+// const generateFileSectionHtml = (fileReport) => {
+
+//   const divider = '<hr>';
+
+//   const relPath = fileReport.path.split('/').pop();
+//   const localHref = relPath
+//     .split('.js').join('');
+//   const header = `<h2 id="${localHref}">${fileReport.path}</h2>`;
+
+
+//   const debuggerButton = `<button onclick="inDebugger('${fileReport.path}')">step through in debugger</button>`;
+
+//   const jsTutorButton = `<button onclick="inJsTutor('${fileReport.path}')">open in JS Tutor</a>`
+
+
+//   const textArea = `<textarea id="${fileReport.path}">debugger; // injected by review.js\n\n${fileReport.source}</textarea>`;
+
+//   return divider + '<br>'
+//     + header + '<br><br>'
+//     + debuggerButton + jsTutorButton + '<br>'
+//     + textArea + '<br>';
+// }
+
+
+
+// const generateIndexHtml = (report) => {
+
+//   if (report.dirs) {
+//     report.dirs
+//       .forEach(report => generateIndexHtml(report));
+//   }
+
+
+//   const NOW = new Date();
+
+//   const dirName = path => {
+//     const pathArr = path
+//       .slice(0, path.length - 1)
+//       .split('/');
+//     return pathArr[pathArr.length - 1] + '/';
+//   }
+
+
+
+//   const head = '';
+
+//   const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+//     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
+
+//   const dirList = report.dirs
+//     ? report.dirs
+//       .map(dir => {
+//         const relPath = dirName(dir.path);
+//         return `* [${relPath}](./${relPath}) - ${interpret(dir.status)}`;
+//       })
+//       .reduce((list, li) => list + li + '\n', '')
+//     : '';
+
+//   const fileList = report.files
+//     ? report.files
+//       .map(file => {
+//         const relPath = file.path.split('/').pop();
+//         const localHref = relPath.split('.js').join('');
+//         return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
+//       })
+//       .reduce((list, li) => list + li + '\n', '')
+//     : '';
+
+//   const index = dirList + fileList;
+
+//   const tableOfContents = index
+//     ? `### Exercises:\n\n` + index
+//     : '';
+
+//   const fileSections = !report.files
+//     ? ''
+//     : report.files
+//       .map(fileReport => generateFileSectionHtml(fileReport))
+//       .reduce((body, section) => body + section + '\n', '');
+
+//   const newReadme = top + '\n\n'
+//     + tableOfContents + '\n'
+//     + fileSections;
+
+//   fs.writeFile(
+//     report.path + 'README.md',
+//     newReadme,
+//     (err) => { if (err) { console.log(err) } }
+//   );
+
+// };
+
+// generateIndexHtml(evaluation);
 
 
