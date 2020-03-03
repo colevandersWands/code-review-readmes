@@ -143,7 +143,7 @@ const writeJsonReports = (report) => {
 
   fs.writeFile(
     report.path + 'report.json',
-    JSON.stringify(report, null, '  '),
+    JSON.stringify(report, null, ''),
     (err) => { if (err) { console.log(err) } }
   );
 
