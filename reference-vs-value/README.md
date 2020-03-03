@@ -1,11 +1,13 @@
-# reference-vs-value/
+# reference-vs-value/ 
 
-> Mon Mar 02 2020, 6:08:57 PM
+> Tue Mar 03 2020, 12:04:14 PM
 
-* [challenges/](./challenges/) - error
+* [reference-vs-value/](#reference-vs-value/) - error
 * [comparing.js](#comparing) - error
 * [const-reference-types.js](#const-reference-types) - error
 * [sharing-a-reference.js](#sharing-a-reference) - pass
+
+---
 
 ## [comparing](./comparing.js)
 
@@ -55,6 +57,7 @@ alsoObjectOne.m = 'ega';
 console.assert(alsoObjectTwo.m === undefined, 'objectTwo does not change when objectOne does');
 objectTwo.h = 'uh?';
 console.assert(objectOne.h === undefined, 'objectOne does not change when objectTwo does');
+
 ```
 
 ```txt
@@ -80,10 +83,12 @@ x ReferenceError: alsoObjectTwo is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+
+---
 
 ## [const-reference-types](./const-reference-types.js)
 
@@ -103,6 +108,7 @@ const constantArray = [4];
 constantArray[0] = 6; // no error
 constantArray[1] = 7; // no error
 constantArray = [6]; // error!
+
 ```
 
 ```txt
@@ -114,10 +120,12 @@ x TypeError: Assignment to constant variable.
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+
+---
 
 ## [sharing-a-reference](./sharing-a-reference.js)
 
@@ -158,6 +166,7 @@ arrayOne = undefined;
 console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arrayTwo');
 
 
+
 ```
 
 ```txt
@@ -170,3 +179,4 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 + PASS: arrayTwo has changed after modifying arrayOne
 + PASS: reassigning arrayOne does not affect arrayTwo
 ```
+

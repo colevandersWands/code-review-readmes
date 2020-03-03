@@ -1,11 +1,13 @@
-# challenges/
+# challenges/ 
 
-> Mon Mar 02 2020, 6:08:57 PM
+> Tue Mar 03 2020, 12:04:14 PM
 
 * [array-1.js](#array-1) - error
 * [array-2.js](#array-2) - error
 * [object-1.js](#object-1) - error
 * [object-2.js](#object-2) - error
+
+---
 
 ## [array-1](./array-1.js)
 
@@ -33,6 +35,7 @@ const index = 1;
 const arraysIndexAreSame = array1[index] === array2[index];
 const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
+
 ```
 
 ```txt
@@ -44,10 +47,12 @@ x ReferenceError: array1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+
+---
 
 ## [array-2](./array-2.js)
 
@@ -72,6 +77,7 @@ const index = 1;
 const arraysIndexAreSame = array1[index] === array2[index];
 const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
+
 ```
 
 ```txt
@@ -83,10 +89,12 @@ x ReferenceError: array1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+
+---
 
 ## [object-1](./object-1.js)
 
@@ -112,6 +120,7 @@ const key = 'y';
 const objectsKeyAreSame = object1[key] === object2[key];
 const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
+
 ```
 
 ```txt
@@ -123,10 +132,12 @@ x ReferenceError: object1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+
+---
 
 ## [object-2](./object-2.js)
 
@@ -152,6 +163,7 @@ const key = 'y';
 const objectsKeyAreSame = object1[key] === object2[key];
 const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
+
 ```
 
 ```txt
@@ -163,7 +175,8 @@ x ReferenceError: object1 is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:48:5)
-    at evaluateDirectory ( [...] /review.js:64:32)
-    at  [...] /review.js:76:25
+    at evaluateFile ( [...] /review.js:67:5)
+    at  [...] /review.js:88:24
+    at Array.map (<anonymous>)
 ```
+

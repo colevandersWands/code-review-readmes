@@ -1,11 +1,13 @@
-# side-effects/
+# side-effects/ 
 
-> Mon Mar 02 2020, 6:08:57 PM
+> Tue Mar 03 2020, 12:04:14 PM
 
 * [avoiding-side-effects.js](#avoiding-side-effects) - pass
 * [challenges.js](#challenges) - fail
 * [copying-arrays-and-objects.js](#copying-arrays-and-objects) - pass
 * [what-are-they.js](#what-are-they) - pass
+
+---
 
 ## [avoiding-side-effects](./avoiding-side-effects.js)
 
@@ -48,6 +50,7 @@ const updatedObject = objectSideEffect(globalObject, 'a', 'hi!');
 console.assert(updatedObject.a === 'hi!', 'the returned object is updated ...');
 console.assert(globalObject.a === 1, '... but so is the global object ...');
 console.assert(globalObject !== updatedObject, "... because they're the same thing!");
+
 ```
 
 ```txt
@@ -58,6 +61,8 @@ console.assert(globalObject !== updatedObject, "... because they're the same thi
 + PASS: ... but so is the global object ...
 + PASS: ... because they're the same thing!
 ```
+
+---
 
 ## [challenges](./challenges.js)
 
@@ -100,6 +105,7 @@ console.assert(keyKeyObject.a === 'a', 'object: second');
 console.assert(keyKeyObject.b === 'b', 'object: third');
 console.assert(initialObject.a === 1, 'object: fourth');
 console.assert(initialObject.b === 2, 'object: fifth');
+
 ```
 
 ```txt
@@ -114,6 +120,8 @@ console.assert(initialObject.b === 2, 'object: fifth');
 - FAIL: object: fourth
 - FAIL: object: fifth
 ```
+
+---
 
 ## [copying-arrays-and-objects](./copying-arrays-and-objects.js)
 
@@ -175,6 +183,7 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 
 
 
+
 ```
 
 ```txt
@@ -193,6 +202,8 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 + PASS: copiedObject[1] === object[1]
 + PASS: copiedObject !== object
 ```
+
+---
 
 ## [what-are-they](./what-are-they.js)
 
@@ -233,6 +244,7 @@ const updatedObject = objectSideEffect(globalObject, 'a', 'hi!');
 console.assert(updatedObject.a === 'hi!', 'the returned object is updated ...');
 console.assert(globalObject.a === 'hi!', '... but so is the global object ...');
 console.assert(globalObject === updatedObject, "... because they're the same thing!");
+
 ```
 
 ```txt
@@ -243,3 +255,4 @@ console.assert(globalObject === updatedObject, "... because they're the same thi
 + PASS: ... but so is the global object ...
 + PASS: ... because they're the same thing!
 ```
+
