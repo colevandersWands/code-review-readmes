@@ -1,6 +1,6 @@
 # side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 10:44:06 PM
+> Tue Mar 03 2020, 11:04:34 PM
 
 ### Exercises:
 
@@ -72,6 +72,8 @@ console.assert(globalObject !== updatedObject, "... because they're the same thi
 
 ```
 
+[TOP](#exercises)
+
 ---
 
 ## [challenges.js](./challenges.js) - fail
@@ -128,6 +130,8 @@ console.assert(initialObject.a === 1, 'object: fourth');
 console.assert(initialObject.b === 2, 'object: fifth');
 
 ```
+
+[TOP](#exercises)
 
 ---
 
@@ -209,6 +213,8 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 
 ```
 
+[TOP](#exercises)
+
 ---
 
 ## [what-are-they.js](./what-are-they.js) - pass
@@ -259,4 +265,6 @@ console.assert(globalObject.a === 'hi!', '... but so is the global object ...');
 console.assert(globalObject === updatedObject, "... because they're the same thing!");
 
 ```
+
+[TOP](#exercises)
 

@@ -219,11 +219,15 @@ const generateFileSectionMd = (fileReport) => {
 
   const source = '```js\n' + fileReport.source + '\n```';
 
+  // because there's no practical way to know the top file header
+  const topLink = '[TOP](#exercises)';
+
   return divider + '\n\n'
     + header + '\n\n'
     // + jsTutorLink + '\n\n'
     + report + '\n\n'
-    + source + '\n';
+    + source + '\n\n'
+    + topLink + '\n';
 }
 
 
@@ -252,7 +256,7 @@ const generateReadmes = (report) => {
     ? report.dirs
       .map(dir => {
         const relPath = dirName(dir.path);
-        return `* [${relPath}](./${relPath}) - ${interpret(dir.status)}`;
+        return `* [${relPath}](./${relPath}README.md) - ${interpret(dir.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';
@@ -284,16 +288,23 @@ const generateReadmes = (report) => {
     + tableOfContents + '\n'
     + fileSections;
 
-  fs.writeFile(
+  fs.writeFileSync(
     report.path + 'README.md',
     newReadme,
-    (err) => { if (err) { console.log(err) } }
+    // (err) => { if (err) { console.log(err) } }
   );
 
 };
 
 generateReadmes(evaluation);
 
+const topLevelReadmeSource = fs.readFileSync('./README.md', 'utf-8');
+const cleanedTopLevelReadmeSource = topLevelReadmeSource
+  .split('* [../README.md](../README.md)\n').join('');
+fs.writeFile('./README.md',
+  cleanedTopLevelReadmeSource,
+  (err) => { if (err) { console.log(err) } }
+);
 
 
 // --- generate index.html's ---

@@ -1,6 +1,6 @@
 # challenges/ - error
 
-> Tue Mar 03 2020, 10:44:06 PM
+> Tue Mar 03 2020, 11:04:34 PM
 
 ### Exercises:
 
@@ -53,6 +53,8 @@ console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 
 ```
 
+[TOP](#exercises)
+
 ---
 
 ## [array-2.js](./array-2.js) - error
@@ -92,6 +94,8 @@ const array1IndexIsBye = array1[index] === 'bye';
 console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
 
 ```
+
+[TOP](#exercises)
 
 ---
 
@@ -134,6 +138,8 @@ console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
 
 ```
 
+[TOP](#exercises)
+
 ---
 
 ## [object-2.js](./object-2.js) - error
@@ -174,4 +180,6 @@ const object1YIsBye = object1.y === 'bye';
 console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
 
 ```
+
+[TOP](#exercises)
 

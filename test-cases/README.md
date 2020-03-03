@@ -1,6 +1,6 @@
 # test-cases/ - fail
 
-> Tue Mar 03 2020, 10:44:06 PM
+> Tue Mar 03 2020, 11:04:34 PM
 
 ### Exercises:
 
@@ -55,4 +55,6 @@ for (let test of findAllEvensTests) {
 };
 
 ```
+
+[TOP](#exercises)
 

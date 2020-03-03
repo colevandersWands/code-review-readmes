@@ -1,10 +1,10 @@
 # reference-vs-value/ - error
 
-> Tue Mar 03 2020, 10:44:06 PM
+> Tue Mar 03 2020, 11:04:34 PM
 
 ### Exercises:
 
-* [challenges/](./challenges/) - error
+* [challenges/](./challenges/README.md) - error
 * [comparing.js](#comparingjs---error) - error
 * [const-reference-types.js](#const-reference-typesjs---error) - error
 * [sharing-a-reference.js](#sharing-a-referencejs---pass) - pass
@@ -89,6 +89,8 @@ console.assert(objectOne.h === undefined, 'objectOne does not change when object
 
 ```
 
+[TOP](#exercises)
+
 ---
 
 ## [const-reference-types.js](./const-reference-types.js) - error
@@ -123,6 +125,8 @@ constantArray[1] = 7; // no error
 constantArray = [6]; // error!
 
 ```
+
+[TOP](#exercises)
 
 ---
 
@@ -176,4 +180,6 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 
 
 ```
+
+[TOP](#exercises)
 
