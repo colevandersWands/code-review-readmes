@@ -6,7 +6,7 @@ const BASE_DIRECTORY = './'
   + (process.argv[2] || '');
 
 
-const registerAllJsFiles = function (dirPath, directoryObject, oldPath) {
+const registerAllJsFiles = function (dirPath, oldPath) {
   files = fs.readdirSync(dirPath)
 
   const thisFileName = __filename.split(__dirname).join('');
@@ -20,7 +20,7 @@ const registerAllJsFiles = function (dirPath, directoryObject, oldPath) {
 
     if (isDirectory) {
       if (file[0] === '.') continue; // ignore hidden folders
-      const subDirs = registerAllJsFiles(dirPath + '/' + file, arrayOfDirs, dirPath);
+      const subDirs = registerAllJsFiles(dirPath + '/' + file, dirPath);
       arrayOfDirs.push(subDirs);
     } else {
       arrayOfFiles.push(path.join(file))
@@ -32,6 +32,13 @@ const registerAllJsFiles = function (dirPath, directoryObject, oldPath) {
       .split(oldPath).join('')
       .split('/').join('')
       + '/',
+    // path: {
+    //   rel: dirPath
+    //     .split(oldPath).join('')
+    //     .split('/').join('')
+    //     + '/',
+    //   abs: oldPath + dirPath + '/'
+    // },
     files: arrayOfFiles.length > 0
       ? arrayOfFiles
       : null,
@@ -42,7 +49,7 @@ const registerAllJsFiles = function (dirPath, directoryObject, oldPath) {
 }
 
 const allJsFiles = registerAllJsFiles(BASE_DIRECTORY);
-console.log(JSON.stringify(allJsFiles, null, '  '));
+// console.log(JSON.stringify(allJsFiles, null, '  '));
 
 /* statuses
   0: pass
@@ -109,6 +116,10 @@ const evaluateDirectory = (toReport, path) => {
     : filesStatus;
 
   return {
+    // path: {
+    //   rel: toReport.path,
+    //   abs: path
+    // },
     path,
     status,
     time: (new Date()).toJSON(),
@@ -141,6 +152,15 @@ const writeJsonReports = (report) => {
 writeJsonReports(evaluation);
 
 
+
+const interpret = status => status === 0
+  ? 'pass'
+  : status === 1
+    ? 'fail'
+    : status === 2
+      ? 'error'
+      : 'no status';
+
 const generateFileSection = (fileReport) => {
 
   const divider = '---';
@@ -148,7 +168,7 @@ const generateFileSection = (fileReport) => {
   const relPath = fileReport.path.split('/').pop();
   const localHref = relPath
     .split('.js').join('');
-  const header = `## [${localHref}](./${relPath})`;
+  const header = `## [${localHref}](./${relPath}) - ${interpret(fileReport.status)}`;
 
   const encoded = encodeURIComponent(fileReport.source);
   const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
@@ -186,6 +206,8 @@ const generateFileSection = (fileReport) => {
     + report + '\n';
 }
 
+
+
 const generateReadmes = (report) => {
 
   if (report.dirs) {
@@ -193,28 +215,24 @@ const generateReadmes = (report) => {
       .forEach(report => generateReadmes(report));
   }
 
-  const now = new Date();
-  const pathArr = report.path
-    .split('/');
-  const dirName = pathArr[pathArr.length - 2] + '/';
-  const top = `# ${dirName} \n\n`
-    + `> ${now.toDateString()}, ${now.toLocaleTimeString()}`;
 
-  const interpret = status => status === 0
-    ? 'pass'
-    : status === 1
-      ? 'fail'
-      : status === 2
-        ? 'error'
-        : 'no status';
+  const NOW = new Date();
+
+  const dirName = path => {
+    const pathArr = path
+      .slice(0, path.length - 1)
+      .split('/');
+    return pathArr[pathArr.length - 1] + '/';
+  }
+
+  const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+    + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
 
   const dirList = report.dirs
     ? report.dirs
       .map(dir => {
-        const pathArr = report.path
-          .split('/');
-        const relPath = pathArr[pathArr.length - 2] + '/';
-        return `* [${relPath}](#${relPath}) - ${interpret(dir.status)}`;
+        const relPath = dirName(dir.path);
+        return `* [${relPath}](./${relPath}) - ${interpret(dir.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';
@@ -224,7 +242,7 @@ const generateReadmes = (report) => {
       .map(file => { // what is the best way to manage this?
         const relPath = file.path.split('/').pop();
         const localHref = relPath.split('.js').join('');
-        return `* [${relPath}](#${localHref}) - ${interpret(file.status)}`;
+        return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';

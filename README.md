@@ -1,7 +1,7 @@
-# ./ 
+# ./ - error
 
-> Tue Mar 03 2020, 12:04:14 PM
+> Tue Mar 03 2020, 12:36:05 PM
 
-* [./](#./) - error
-* [./](#./) - fail
+* [reference-vs-value/](./reference-vs-value/) - error
+* [side-effects/](./side-effects/) - fail
 
