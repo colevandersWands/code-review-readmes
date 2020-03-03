@@ -171,7 +171,7 @@ const generateFileSection = (fileReport) => {
   const deTabbed = sanitized.replace(/%09/g, '%20%20');
   const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
     + deTabbed
-    + "&cumulative=false&curInstr=2&heapPrimitives=nevernest&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+    + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
   const jsTutorLink = `* [open in JS Tutor](${jsTutorUrl})`
 
   const source = '```js\n' + fileReport.source + '\n```';

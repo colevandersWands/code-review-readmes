@@ -17,12 +17,15 @@ const findAllEvensTests = [
 ];
 
 const findAllEvens = (arr) => {
-  return null;
-  // write me!
+  if (arr.length > 3) {
+    return null;
+  } else {
+    return arr;
+  };
 };
 
 for (let test of findAllEvensTests) {
   const expected = JSON.stringify(test.expected);
-  const actual = JSON.stringify(findAllEvens(test.args));
-  console.assert(actual === expected, test.name + ' - actual: ' + actual);
+  const actual = JSON.stringify(findAllEvens(...test.args));
+  console.assert(actual === expected, test.name + ', actual -> ' + actual);
 };
