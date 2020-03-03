@@ -24,5 +24,5 @@ const findAllEvens = (arr) => {
 for (let test of findAllEvensTests) {
   const expected = JSON.stringify(test.expected);
   const actual = JSON.stringify(findAllEvens(test.args));
-  console.assert(actual === expected, test.name);
+  console.assert(actual === expected, test.name + ' - actual: ' + actual);
 };
