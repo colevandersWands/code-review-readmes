@@ -197,9 +197,9 @@ const generateFileSection = (fileReport) => {
 
   return divider + '\n\n'
     + header + '\n\n'
-    + source + '\n\n'
     + jsTutorLink + '\n\n'
-    + report + '\n';
+    + report + '\n\n'
+    + source + '\n';
 }
 
 
