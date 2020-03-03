@@ -219,7 +219,7 @@ const generateFileSectionMd = (fileReport) => {
 
   const source = '```js\n' + fileReport.source + '\n```';
 
-  const topLink = '[TOP](#top)';
+  const topLink = '[TOP](#readme)';
 
   return divider + '\n\n'
     + header + '\n\n'
@@ -248,8 +248,7 @@ const generateReadmes = (report) => {
     return pathArr[pathArr.length - 1] + '/';
   }
 
-  const top = "<text id='top'></text>\n\n"
-    + `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+  const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
 
   const dirList = report.dirs

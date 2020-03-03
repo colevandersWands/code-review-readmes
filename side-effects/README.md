@@ -1,8 +1,6 @@
-<text id='top'></text>
-
 # side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 11:17:34 PM
+> Tue Mar 03 2020, 11:20:03 PM
 
 ### Exercises:
 
@@ -74,7 +72,7 @@ console.assert(globalObject !== updatedObject, "... because they're the same thi
 
 ```
 
-[TOP](#top)
+[TOP](#readme)
 
 ---
 
@@ -133,7 +131,7 @@ console.assert(initialObject.b === 2, 'object: fifth');
 
 ```
 
-[TOP](#top)
+[TOP](#readme)
 
 ---
 
@@ -215,7 +213,7 @@ console.assert(copiedObject !== object, 'copiedObject !== object');
 
 ```
 
-[TOP](#top)
+[TOP](#readme)
 
 ---
 
@@ -268,5 +266,5 @@ console.assert(globalObject === updatedObject, "... because they're the same thi
 
 ```
 
-[TOP](#top)
+[TOP](#readme)
 
