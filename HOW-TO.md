@@ -5,4 +5,4 @@ to review the code in any directory, navigate to that directory and execute `nod
 
 all sub-folders will be evaluated. new readmes and report.json's will also be generated.
 
-if you are in a sub-directory, you will just need to
+if you are in a sub-directory, you will just need to adjust the path. ie `node ../review.js`
