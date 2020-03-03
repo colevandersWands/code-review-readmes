@@ -6,7 +6,7 @@
 
 console.log('\n--- avoiding side effects: arrays ---');
 
-function arraySideEffect(arr, index, value) {
+function arraySideEffectarr, index, value) {
   const copiedArr = JSON.parse(JSON.stringify(arr));
   copiedArr[index] = value;
   return copiedArr;

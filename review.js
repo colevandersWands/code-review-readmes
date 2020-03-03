@@ -174,8 +174,6 @@ const generateFileSection = (fileReport) => {
     + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
   const jsTutorLink = `* [open in JS Tutor](${jsTutorUrl})`
 
-  const source = '```js\n' + fileReport.source + '\n```';
-
   const renderedReport = fileReport.report
     .map(entry => {
       if (entry.error) {
@@ -195,10 +193,12 @@ const generateFileSection = (fileReport) => {
 
   const report = '```txt\n' + renderedReport + '```';
 
+  const source = '```js\n' + fileReport.source + '\n```';
+
   return divider + '\n\n'
     + header + '\n\n'
-    + jsTutorLink + '\n\n'
     + source + '\n\n'
+    + jsTutorLink + '\n\n'
     + report + '\n';
 }
 
