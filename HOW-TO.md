@@ -1,4 +1,4 @@
-the exercises are all plain JS files, you can study them one at a time in Node
+the exercises are all plain JS files, you can study them one at a time in Node or the browser
 
 
 to review the code in any directory, navigate to that directory and execute `node review.js`.
