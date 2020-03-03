@@ -1,17 +1,17 @@
-# side-effects/ - error
+# side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 9:07:24 PM
+> Tue Mar 03 2020, 9:32:58 PM
 
 ### Exercises:
 
-* [avoiding-side-effects.js](#avoiding-side-effectsjs---error) - error
+* [avoiding-side-effects.js](#avoiding-side-effectsjs---syntaxError) - syntaxError
 * [challenges.js](#challengesjs---fail) - fail
 * [copying-arrays-and-objects.js](#copying-arrays-and-objectsjs---pass) - pass
 * [what-are-they.js](#what-are-theyjs---pass) - pass
 
 ---
 
-## [avoiding-side-effects.js](./avoiding-side-effects.js) - error
+## [avoiding-side-effects.js](./avoiding-side-effects.js) - syntaxError
 
 * [open in JS Tutor](http://www.pythontutor.com/live.html#code=%2F%2F%20the%20best%20way%20to%20avoid%20side-effects%20is%20to%20copy%20arguments%0A%2F%2F%20%20if%20your%20function%20takes%20an%20object%20or%20array%20as%20a%20parameter%0A%2F%2F%20%20create%20a%20copy%20at%20the%20beginning%20of%20your%20function%20and%20use%20the%20copy%0A%2F%2F%20psst.%20JS%20Tutor%20is%20helpful%20for%20this%20example%0A%0A%0Aconsole.log%28'%5Cn---%20avoiding%20side%20effects%3A%20arrays%20---'%29%3B%0A%0Afunction%20arraySideEffectarr%2C%20index%2C%20value%29%20%7B%0A%20%20const%20copiedArr%20%3D%20JSON.parse%28JSON.stringify%28arr%29%29%3B%0A%20%20copiedArr%5Bindex%5D%20%3D%20value%3B%0A%20%20return%20copiedArr%3B%0A%7D%0A%0Aconst%20globalArray%20%3D%20%5B1%2C%202%2C%203%5D%3B%0Aconst%20updatedArray%20%3D%20arraySideEffect%28globalArray%2C%200%2C%20'hi!'%29%3B%0A%0Aconsole.assert%28updatedArray%5B0%5D%20%3D%3D%3D%20'hi!'%2C%20'the%20returned%20array%20is%20updated%20...'%29%3B%0Aconsole.assert%28globalArray%5B0%5D%20%3D%3D%3D%201%2C%20'...%20but%20the%20global%20array%20has%20not%20changed%20...'%29%3B%0Aconsole.assert%28globalArray%20!%3D%3D%20updatedArray%2C%20%22...%20because%20you%20avoided%20side-effects!%22%29%3B%0A%0A%0Aconsole.log%28'---%20avoiding%20side%20effects%3A%20objects%20---'%29%3B%0A%0Afunction%20objectSideEffect%28obj%2C%20key%2C%20value%29%20%7B%0A%20%20const%20copiedObj%20%3D%20JSON.parse%28JSON.stringify%28obj%29%29%3B%0A%20%20copiedObj%5Bkey%5D%20%3D%20value%3B%0A%20%20return%20copiedObj%3B%0A%7D%0A%0Aconst%20globalObject%20%3D%20%7B%20a%3A%201%2C%20b%3A%202%2C%20c%3A%203%20%7D%3B%0Aconst%20updatedObject%20%3D%20objectSideEffect%28globalObject%2C%20'a'%2C%20'hi!'%29%3B%0A%0Aconsole.assert%28updatedObject.a%20%3D%3D%3D%20'hi!'%2C%20'the%20returned%20object%20is%20updated%20...'%29%3B%0Aconsole.assert%28globalObject.a%20%3D%3D%3D%201%2C%20'...%20but%20so%20is%20the%20global%20object%20...'%29%3B%0Aconsole.assert%28globalObject%20!%3D%3D%20updatedObject%2C%20%22...%20because%20they're%20the%20same%20thing!%22%29%3B%0A&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
 
@@ -28,9 +28,9 @@ SyntaxError: Unexpected token ,
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
     at evaluateFile ( [...] /review.js:69:5)
-    at  [...] /review.js:90:24
+    at  [...] /review.js:95:24
     at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:90:8)
+    at evaluateDirectory ( [...] /review.js:95:8)
 ```
 
 ```js

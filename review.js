@@ -70,11 +70,16 @@ const evaluateFile = (path) => {
     // const code = fs.readFileSync(path, 'utf-8');
     // eval(code);
   } catch (err) {
+
+    if (err.stack.includes('SyntaxError')) {
+      status = 3;
+    } else {
+      status = 2;
+    };
     report.push({
       error: err.stack
         .split(__dirname).join(' [...] ')
     });
-    status = 2;
   }
   console.assert = nativeAssert;
   const source = fs.readFileSync(path, 'utf-8');
@@ -155,7 +160,9 @@ const interpret = status => status === 0
     ? 'fail'
     : status === 2
       ? 'error'
-      : 'no status';
+      : status === 3
+        ? 'syntaxError'
+        : 'no status';
 
 const generateFileSectionMd = (fileReport) => {
 
