@@ -50,6 +50,7 @@ const allJsFiles = registerDirectory(BASE_DIRECTORY);
   0: pass
   1: fail
   2: error
+  3: syntax error
 */
 const evaluateFile = (path) => {
   let report = [];
