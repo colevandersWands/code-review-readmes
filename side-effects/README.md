@@ -1,6 +1,6 @@
 # side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 10:38:31 PM
+> Tue Mar 03 2020, 10:44:06 PM
 
 ### Exercises:
 
@@ -8,6 +8,7 @@
 * [challenges.js](#challengesjs---fail) - fail
 * [copying-arrays-and-objects.js](#copying-arrays-and-objectsjs---pass) - pass
 * [what-are-they.js](#what-are-theyjs---pass) - pass
+* [../README.md](../README.md)
 
 ---
 

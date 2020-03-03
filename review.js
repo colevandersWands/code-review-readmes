@@ -271,6 +271,7 @@ const generateReadmes = (report) => {
 
   const tableOfContents = index
     ? `### Exercises:\n\n` + index
+    + '* [../README.md](../README.md)\n'
     : '';
 
   const fileSections = !report.files

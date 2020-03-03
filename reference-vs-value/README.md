@@ -1,6 +1,6 @@
 # reference-vs-value/ - error
 
-> Tue Mar 03 2020, 10:38:31 PM
+> Tue Mar 03 2020, 10:44:06 PM
 
 ### Exercises:
 
@@ -8,6 +8,7 @@
 * [comparing.js](#comparingjs---error) - error
 * [const-reference-types.js](#const-reference-typesjs---error) - error
 * [sharing-a-reference.js](#sharing-a-referencejs---pass) - pass
+* [../README.md](../README.md)
 
 ---
 

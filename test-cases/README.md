@@ -1,10 +1,11 @@
 # test-cases/ - fail
 
-> Tue Mar 03 2020, 10:38:31 PM
+> Tue Mar 03 2020, 10:44:06 PM
 
 ### Exercises:
 
 * [evens.js](#evensjs---fail) - fail
+* [../README.md](../README.md)
 
 ---
 

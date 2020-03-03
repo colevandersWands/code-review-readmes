@@ -1,6 +1,6 @@
 # challenges/ - error
 
-> Tue Mar 03 2020, 10:38:31 PM
+> Tue Mar 03 2020, 10:44:06 PM
 
 ### Exercises:
 
@@ -8,6 +8,7 @@
 * [array-2.js](#array-2js---error) - error
 * [object-1.js](#object-1js---error) - error
 * [object-2.js](#object-2js---error) - error
+* [../README.md](../README.md)
 
 ---
 
