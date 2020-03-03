@@ -271,98 +271,150 @@ generateReadmes(evaluation);
 
 // --- generate index.html's ---
 
-// const generateFileSectionHtml = (fileReport) => {
+const generateFileSectionHtml = (fileReport) => {
 
-//   const divider = '<hr>';
+  const divider = '<hr>';
 
-//   const relPath = fileReport.path.split('/').pop();
-//   const localHref = relPath
-//     .split('.js').join('');
-//   const header = `<h2 id="${localHref}">${fileReport.path}</h2>`;
+  const relPath = fileReport.path.split('/').pop();
+  const header = `<h2>${relPath} - ${interpret(fileReport.status)}</h2>`;
 
 
-//   const debuggerButton = `<button onclick="inDebugger('${fileReport.path}')">step through in debugger</button>`;
+  const debuggerButton = `<button onclick="inDebugger('${fileReport.path}')">step through in debugger</button>`;
 
-//   const jsTutorButton = `<button onclick="inJsTutor('${fileReport.path}')">open in JS Tutor</a>`
-
-
-//   const textArea = `<textarea id="${fileReport.path}">debugger; // injected by review.js\n\n${fileReport.source}</textarea>`;
-
-//   return divider + '<br>'
-//     + header + '<br><br>'
-//     + debuggerButton + jsTutorButton + '<br>'
-//     + textArea + '<br>';
-// }
+  const jsTutorButton = `<button onclick="inJsTutor('${fileReport.path}')">open in JS Tutor</button>`
 
 
+  const textArea = `<textarea id="${fileReport.path}">\n${fileReport.source}\n    </textarea>`;
 
-// const generateIndexHtml = (report) => {
+  return `
+  ${divider}
 
-//   if (report.dirs) {
-//     report.dirs
-//       .forEach(report => generateIndexHtml(report));
-//   }
-
-
-//   const NOW = new Date();
-
-//   const dirName = path => {
-//     const pathArr = path
-//       .slice(0, path.length - 1)
-//       .split('/');
-//     return pathArr[pathArr.length - 1] + '/';
-//   }
+  <section  id="${relPath}">
+    ${header}
+    ${debuggerButton}
+    ${jsTutorButton}\n    <br>\n    <br>
+    ${textArea}
+  </section>`;
+}
 
 
 
-//   const head = '';
+const generateIndexHtml = (report) => {
 
-//   const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
-//     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
+  if (report.dirs) {
+    report.dirs
+      .forEach(report => generateIndexHtml(report));
+  }
 
-//   const dirList = report.dirs
-//     ? report.dirs
-//       .map(dir => {
-//         const relPath = dirName(dir.path);
-//         return `* [${relPath}](./${relPath}) - ${interpret(dir.status)}`;
-//       })
-//       .reduce((list, li) => list + li + '\n', '')
-//     : '';
 
-//   const fileList = report.files
-//     ? report.files
-//       .map(file => {
-//         const relPath = file.path.split('/').pop();
-//         const localHref = relPath.split('.js').join('');
-//         return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
-//       })
-//       .reduce((list, li) => list + li + '\n', '')
-//     : '';
+  const NOW = new Date();
 
-//   const index = dirList + fileList;
+  const dirName = path => {
+    const pathArr = path
+      .slice(0, path.length - 1)
+      .split('/');
+    return pathArr[pathArr.length - 1] + '/';
+  }
 
-//   const tableOfContents = index
-//     ? `### Exercises:\n\n` + index
-//     : '';
+  const textAreaStyle = `<style>
+    textarea {
+      height: 80vh;
+      width: 95vw;
+    }
+  </style>`;
 
-//   const fileSections = !report.files
-//     ? ''
-//     : report.files
-//       .map(fileReport => generateFileSectionHtml(fileReport))
-//       .reduce((body, section) => body + section + '\n', '');
+  const inJsTutorScript = `<script>
+    function inJsTutor(id) {
+      const source = document.getElementById(id).innerHTML;
+      const encoded = encodeURIComponent(source);
+      const sanitized = encoded.replace(/\\(/g, '%28').replace(/\\)/g, '%29');
+      const deTabbed = sanitized.replace(/%09/g, '%20%20');
+      const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
+        + deTabbed
+        + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+      window.open(jsTutorUrl, '_blank');
+    }
+  </script>`
 
-//   const newReadme = top + '\n\n'
-//     + tableOfContents + '\n'
-//     + fileSections;
+  const inDebuggerScript = `<script>
+    function inDebugger(id) {
+      const source = document.getElementById(id).innerHTML;
+      const debuggered = "debugger; // injected by review.js\\n\\n" + source;
+      eval(debuggered);
+    }
+  </script>`
 
-//   fs.writeFile(
-//     report.path + 'README.md',
-//     newReadme,
-//     (err) => { if (err) { console.log(err) } }
-//   );
+  const head = '<head>\n'
+    + "  <meta charset='utf8'>\n"
+    + `  <title>${dirName(report.path)}</title>\n`
+    + '  ' + textAreaStyle + '\n'
+    + '  ' + inJsTutorScript + '\n'
+    + '  ' + inDebuggerScript + '\n'
+    + '</head>\n';
 
-// };
+  const header = `<header>
+    <h1>${dirName(report.path)} - ${interpret(report.status)}</h1>
+    <code>${NOW.toDateString()}, ${NOW.toLocaleTimeString()}</code>
+  </header>`;
 
-// generateIndexHtml(evaluation);
+  const dirLis = report.dirs
+    ? report.dirs
+      .map(dir => {
+        const relPath = dirName(dir.path);
+        return `      <li><a href='./${relPath}index.html'>${relPath}</a> - ${interpret(dir.status)}</li>`;
+      })
+      .reduce((lis, li) => lis + li + '\n', '')
+    : '';
+
+  const fileLis = report.files
+    ? report.files
+      .map(file => {
+        const relPath = file.path.split('/').pop();
+        return `      <li><a href='#${relPath}'>${relPath}</a> - ${interpret(file.status)}</li>`;
+      })
+      .reduce((lis, li) => lis + li + '\n', '')
+    : '';
+
+  const index = "<ul>\n"
+    + dirLis
+    + fileLis + '\n'
+    + '      <li><a href="../index.html">../index.html</a></li>\n'
+    + '    </ul>';
+
+  const tableOfContents = index
+    ? ("<section id='table-of-contents'>\n"
+      + "    <h3>Exercises:</h3><br>\n"
+      + '    ' + index + '\n'
+      + "  </section>")
+    : '';
+
+  const fileSections = !report.files
+    ? ''
+    : report.files
+      .map(fileReport => generateFileSectionHtml(fileReport))
+      .reduce((body, section) => body + section + '\n  <br>\n', '');
+
+  const body = '<body>\n\n'
+    + '  ' + header + '\n'
+    + '  ' + tableOfContents + '\n'
+    + '  ' + fileSections + '\n'
+    + '</body>\n';
+
+  const newIndex = '<!DOCTYPE html>\n'
+    + "<html lang='en'>\n\n"
+    + head + '\n'
+    + body + '\n'
+    + "</html>";
+
+
+  fs.writeFile(
+    report.path + 'index.html',
+    newIndex,
+    (err) => { if (err) { console.log(err) } }
+  );
+
+};
+
+generateIndexHtml(evaluation);
 
 

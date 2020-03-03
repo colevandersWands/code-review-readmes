@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf8'>
+  <title>test-cases/</title>
+  <style>
+    textarea {
+      height: 80vh;
+      width: 95vw;
+    }
+  </style>
+  <script>
+    function inJsTutor(id) {
+      const source = document.getElementById(id).innerHTML;
+      const encoded = encodeURIComponent(source);
+      const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
+      const deTabbed = sanitized.replace(/%09/g, '%20%20');
+      const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
+        + deTabbed
+        + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+      window.open(jsTutorUrl, '_blank');
+    }
+  </script>
+  <script>
+    function inDebugger(id) {
+      const source = document.getElementById(id).innerHTML;
+      const debuggered = "debugger; // injected by review.js\n\n" + source;
+      eval(debuggered);
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>test-cases/ - fail</h1>
+    <code>Tue Mar 03 2020, 8:55:12 PM</code>
+  </header>
+  <section id='table-of-contents'>
+    <h3>Exercises:</h3><br>
+    <ul>
+      <li><a href='#evens.js'>evens.js</a> - fail</li>
+
+      <li><a href="../index.html">../index.html</a></li>
+    </ul>
+  </section>
+  
+  <hr>
+
+  <section  id="evens.js">
+    <h2>evens.js - fail</h2>
+    <button onclick="inDebugger('./test-cases/evens.js')">step through in debugger</button>
+    <button onclick="inJsTutor('./test-cases/evens.js')">open in JS Tutor</button>
+    <br>
+    <br>
+    <textarea id="./test-cases/evens.js">
+const findEvensArray1 = ['.', '1', '2', ':'];
+const findEvensArray2 = ['1', 'two', 'three', '10'];
+const findEvensArray3 = ['one', '2', '', 'NaN'];
+const findEvensArray4 = ['.', 1, 2, NaN];
+
+const oddsToNotFind = ['1', '3', '5'];
+const evensToFind = ['2', '4', '6'];
+
+const findAllEvensTests = [
+  { name: 'Test 1', args: [findEvensArray1], expected: ['2'] },
+  { name: 'Test 2', args: [findEvensArray2], expected: ['10'] },
+  { name: 'Test 3', args: [findEvensArray3], expected: ['2', ''] },
+  { name: 'Test 4', args: [findEvensArray4], expected: null },
+  { name: 'Test 5', args: [[1, 2, 3]], expected: null },
+  { name: 'Test 6', args: [oddsToNotFind], expected: [] },
+  { name: 'Test 7', args: [evensToFind], expected: ['2', '4', '6'] },
+];
+
+const findAllEvens = (arr) => {
+  if (arr.length > 3) {
+    return null;
+  } else {
+    return arr;
+  };
+};
+
+for (let test of findAllEvensTests) {
+  const expected = JSON.stringify(test.expected);
+  const actual = JSON.stringify(findAllEvens(...test.args));
+  console.assert(actual === expected, test.name + ', actual -> ' + actual);
+};
+
+    </textarea>
+  </section>
+  <br>
+
+</body>
+
+</html>

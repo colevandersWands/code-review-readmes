@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf8'>
+  <title>./</title>
+  <style>
+    textarea {
+      height: 80vh;
+      width: 95vw;
+    }
+  </style>
+  <script>
+    function inJsTutor(id) {
+      const source = document.getElementById(id).innerHTML;
+      const encoded = encodeURIComponent(source);
+      const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
+      const deTabbed = sanitized.replace(/%09/g, '%20%20');
+      const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
+        + deTabbed
+        + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+      window.open(jsTutorUrl, '_blank');
+    }
+  </script>
+  <script>
+    function inDebugger(id) {
+      const source = document.getElementById(id).innerHTML;
+      const debuggered = "debugger; // injected by review.js\n\n" + source;
+      eval(debuggered);
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>./ - error</h1>
+    <code>Tue Mar 03 2020, 8:55:12 PM</code>
+  </header>
+  <section id='table-of-contents'>
+    <h3>Exercises:</h3><br>
+    <ul>
+      <li><a href='./reference-vs-value/index.html'>reference-vs-value/</a> - error</li>
+      <li><a href='./side-effects/index.html'>side-effects/</a> - error</li>
+      <li><a href='./test-cases/index.html'>test-cases/</a> - fail</li>
+
+      <li><a href="../index.html">../index.html</a></li>
+    </ul>
+  </section>
+  
+</body>
+
+</html>

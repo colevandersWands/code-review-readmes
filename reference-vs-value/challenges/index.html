@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf8'>
+  <title>challenges/</title>
+  <style>
+    textarea {
+      height: 80vh;
+      width: 95vw;
+    }
+  </style>
+  <script>
+    function inJsTutor(id) {
+      const source = document.getElementById(id).innerHTML;
+      const encoded = encodeURIComponent(source);
+      const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
+      const deTabbed = sanitized.replace(/%09/g, '%20%20');
+      const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
+        + deTabbed
+        + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
+      window.open(jsTutorUrl, '_blank');
+    }
+  </script>
+  <script>
+    function inDebugger(id) {
+      const source = document.getElementById(id).innerHTML;
+      const debuggered = "debugger; // injected by review.js\n\n" + source;
+      eval(debuggered);
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>challenges/ - error</h1>
+    <code>Tue Mar 03 2020, 8:55:12 PM</code>
+  </header>
+  <section id='table-of-contents'>
+    <h3>Exercises:</h3><br>
+    <ul>
+      <li><a href='#array-1.js'>array-1.js</a> - error</li>
+      <li><a href='#array-2.js'>array-2.js</a> - error</li>
+      <li><a href='#object-1.js'>object-1.js</a> - error</li>
+      <li><a href='#object-2.js'>object-2.js</a> - error</li>
+
+      <li><a href="../index.html">../index.html</a></li>
+    </ul>
+  </section>
+  
+  <hr>
+
+  <section  id="array-1.js">
+    <h2>array-1.js - error</h2>
+    <button onclick="inDebugger('./reference-vs-value/challenges/array-1.js')">step through in debugger</button>
+    <button onclick="inJsTutor('./reference-vs-value/challenges/array-1.js')">open in JS Tutor</button>
+    <br>
+    <br>
+    <textarea id="./reference-vs-value/challenges/array-1.js">
+console.log('\n--- array challenge: 1 ---');
+// psst.  use JS Tutor & the debugger!
+
+
+; // declare and assign array1
+; // declare and assign array2
+
+const areTheSameArray = array1 === array2;
+const sameZeroValue = array1[0] === array2[0];
+const zeroValueIsHi = array1[0] === 'hi';
+console.assert(areTheSameArray && sameZeroValue && zeroValueIsHi, 'Test 1');
+
+
+
+const index = 1;
+// pass the next test
+
+
+const arraysIndexAreSame = array1[index] === array2[index];
+const array1IndexIsBye = array1[index] === 'bye';
+console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
+
+    </textarea>
+  </section>
+  <br>
+
+  <hr>
+
+  <section  id="array-2.js">
+    <h2>array-2.js - error</h2>
+    <button onclick="inDebugger('./reference-vs-value/challenges/array-2.js')">step through in debugger</button>
+    <button onclick="inJsTutor('./reference-vs-value/challenges/array-2.js')">open in JS Tutor</button>
+    <br>
+    <br>
+    <textarea id="./reference-vs-value/challenges/array-2.js">
+console.log('\n--- array challenges: 2 ---');
+// psst.  use JS Tutor & the debugger!
+
+
+; // declare and assign array1
+; // declare and assign array2
+
+const areDifferentArrays = array1 !== array2;
+const sameZeroValue = array1[0] === array2[0];
+const zeroValueIsHi = array1[0] === 'hi';
+console.assert(areDifferentArrays && sameZeroValue && zeroValueIsHi, 'Test 1');
+
+const index = 1;
+// pass the last two asserts
+
+const arraysIndexAreSame = array1[index] === array2[index];
+const array1IndexIsBye = array1[index] === 'bye';
+console.assert(arraysIndexAreSame && array1IndexIsBye, 'Test 2');
+
+    </textarea>
+  </section>
+  <br>
+
+  <hr>
+
+  <section  id="object-1.js">
+    <h2>object-1.js - error</h2>
+    <button onclick="inDebugger('./reference-vs-value/challenges/object-1.js')">step through in debugger</button>
+    <button onclick="inJsTutor('./reference-vs-value/challenges/object-1.js')">open in JS Tutor</button>
+    <br>
+    <br>
+    <textarea id="./reference-vs-value/challenges/object-1.js">
+console.log('\n--- object challenges: 1 ---');
+// psst.  use JS Tutor & the debugger!
+
+
+; // declare and assign object1
+; // declare and assign object2
+
+const areTheSameObject = object1 === object2;
+const sameXValue = object1.x === object2.x;
+const xValueIsHi = object1.x === 'hi';
+console.assert(areTheSameObject && sameXValue && xValueIsHi, 'Test 1');
+
+
+const key = 'y';
+// pass the next tests
+
+const objectsKeyAreSame = object1[key] === object2[key];
+const object1YIsBye = object1.y === 'bye';
+console.assert(objectsKeyAreSame && objectsKeyAreSame, 'Test 2');
+
+    </textarea>
+  </section>
+  <br>
+
+  <hr>
+
+  <section  id="object-2.js">
+    <h2>object-2.js - error</h2>
+    <button onclick="inDebugger('./reference-vs-value/challenges/object-2.js')">step through in debugger</button>
+    <button onclick="inJsTutor('./reference-vs-value/challenges/object-2.js')">open in JS Tutor</button>
+    <br>
+    <br>
+    <textarea id="./reference-vs-value/challenges/object-2.js">
+console.log('\n--- object challenges: 2 ---');
+// psst.  use JS Tutor & the debugger!
+
+
+; // declare and assign object1
+; // declare and assign object2
+
+const areNotTheSameObject = object1 !== object2;
+const sameXValue = object1.x === object2.x;
+const xValueIsHi = object1.x === 'hi';
+console.assert(areNotTheSameObject && sameXValue && xValueIsHi, 'Test 1');
+
+
+const key = 'y';
+// pass the next tests
+
+const objectsKeyAreSame = object1[key] === object2[key];
+const object1YIsBye = object1.y === 'bye';
+console.assert(objectsKeyAreSame && object1YIsBye, 'Test 2');
+
+    </textarea>
+  </section>
+  <br>
+
+</body>
+
+</html>
