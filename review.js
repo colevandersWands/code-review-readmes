@@ -1,29 +1,28 @@
 const fs = require("fs")
 const path = require("path")
 
+const BASE_DIRECTORY = process.argv[2] || './';
 
-const BASE_DIRECTORY = './'
-  + (process.argv[2] || '');
+// --- build virtual directory of JS files ---
 
-
-const registerAllJsFiles = function (dirPath, oldPath) {
-  files = fs.readdirSync(dirPath)
+const registerDirectory = function (dirPath, oldPath) {
+  paths = fs.readdirSync(dirPath)
 
   const thisFileName = __filename.split(__dirname).join('');
   const arrayOfFiles = [];
   const arrayOfDirs = [];
-  for (let file of files) {
-    if ('/' + file === thisFileName) continue;
+  for (let nextPath of paths) {
+    if ('/' + nextPath === thisFileName) continue;
 
-    const isDirectory = fs.statSync(dirPath + "/" + file).isDirectory();
-    if (!isDirectory && path.extname(file) !== '.js') continue;
+    const isDirectory = fs.statSync(dirPath + '/' + nextPath).isDirectory();
+    if (!isDirectory && path.extname(nextPath) !== '.js') continue;
 
     if (isDirectory) {
-      if (file[0] === '.') continue; // ignore hidden folders
-      const subDirs = registerAllJsFiles(dirPath + '/' + file, dirPath);
+      if (nextPath[0] === '.') continue; // ignore hidden folders
+      const subDirs = registerDirectory(dirPath + '/' + nextPath, dirPath);
       arrayOfDirs.push(subDirs);
     } else {
-      arrayOfFiles.push(path.join(file))
+      arrayOfFiles.push(path.join(nextPath))
     }
   }
 
@@ -32,13 +31,6 @@ const registerAllJsFiles = function (dirPath, oldPath) {
       .split(oldPath).join('')
       .split('/').join('')
       + '/',
-    // path: {
-    //   rel: dirPath
-    //     .split(oldPath).join('')
-    //     .split('/').join('')
-    //     + '/',
-    //   abs: oldPath + dirPath + '/'
-    // },
     files: arrayOfFiles.length > 0
       ? arrayOfFiles
       : null,
@@ -48,8 +40,11 @@ const registerAllJsFiles = function (dirPath, oldPath) {
   }
 }
 
-const allJsFiles = registerAllJsFiles(BASE_DIRECTORY);
+const allJsFiles = registerDirectory(BASE_DIRECTORY);
 // console.log(JSON.stringify(allJsFiles, null, '  '));
+
+
+// --- generate report on all registered JS files ---
 
 /* statuses
   0: pass
@@ -71,7 +66,7 @@ const evaluateFile = (path) => {
   }
   let status = 0;
   try {
-    require(path); // using require for callstack
+    require(path); // using require for cleaner callstack
     // const code = fs.readFileSync(path, 'utf-8');
     // eval(code);
   } catch (err) {
@@ -116,10 +111,6 @@ const evaluateDirectory = (toReport, path) => {
     : filesStatus;
 
   return {
-    // path: {
-    //   rel: toReport.path,
-    //   abs: path
-    // },
     path,
     status,
     time: (new Date()).toJSON(),
@@ -133,6 +124,10 @@ const evaluation = evaluateDirectory(allJsFiles);
 
 // fs.writeFileSync('report.json', JSON.stringify(evaluation, null, '  '));
 // console.log(JSON.stringify(evaluation, null, '  '));
+
+
+
+// --- write reports into each subdirectory ---
 
 const writeJsonReports = (report) => {
 
@@ -152,6 +147,7 @@ const writeJsonReports = (report) => {
 writeJsonReports(evaluation);
 
 
+// --- write README's into each subdirectory ---
 
 const interpret = status => status === 0
   ? 'pass'
@@ -239,7 +235,7 @@ const generateReadmes = (report) => {
 
   const fileList = report.files
     ? report.files
-      .map(file => { // what is the best way to manage this?
+      .map(file => {
         const relPath = file.path.split('/').pop();
         const localHref = relPath.split('.js').join('');
         return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
