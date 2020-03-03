@@ -182,7 +182,9 @@ const generateFileSectionMd = (fileReport) => {
   const renderedReport = fileReport.report
     .map(entry => {
       if (entry.error) {
-        return 'x ' + entry.error;
+        return entry.error.includes('SyntaxError')
+          ? entry.error
+          : 'x ' + entry.error;
       }
       if (entry.assertion) {
         const assertion = entry.assertion[0]
