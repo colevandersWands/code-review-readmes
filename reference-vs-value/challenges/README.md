@@ -1,6 +1,8 @@
 # challenges/ - error
 
-> Tue Mar 03 2020, 1:14:58 PM
+> Tue Mar 03 2020, 1:23:57 PM
+
+### Exercises:
 
 * [array-1.js](#array-1---error) - error
 * [array-2.js](#array-2---error) - error

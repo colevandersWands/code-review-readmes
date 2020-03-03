@@ -245,6 +245,10 @@ const generateReadmes = (report) => {
 
   const index = dirList + fileList;
 
+  const tableOfContents = index
+    ? `### Exercises:\n\n` + index
+    : '';
+
   const fileSections = !report.files
     ? ''
     : report.files
@@ -252,7 +256,7 @@ const generateReadmes = (report) => {
       .reduce((body, section) => body + section + '\n', '');
 
   const newReadme = top + '\n\n'
-    + index + '\n'
+    + tableOfContents + '\n'
     + fileSections;
 
   fs.writeFile(

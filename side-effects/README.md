@@ -1,6 +1,8 @@
 # side-effects/ - fail
 
-> Tue Mar 03 2020, 1:14:58 PM
+> Tue Mar 03 2020, 1:23:57 PM
+
+### Exercises:
 
 * [avoiding-side-effects.js](#avoiding-side-effects---pass) - pass
 * [challenges.js](#challenges---fail) - fail
