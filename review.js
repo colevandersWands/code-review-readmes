@@ -248,8 +248,8 @@ const generateReadmes = (report) => {
     return pathArr[pathArr.length - 1] + '/';
   }
 
-  const top = "<div id='top'></div>\n\n"
-    + `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+  const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+    + "<div id='top'></div>\n\n"
     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
 
   const dirList = report.dirs
