@@ -156,14 +156,10 @@ const writeJsonReportsRecursive = (report) => {
 
 
 const interpret = (key, value) => key === 'status'
-  ? value === 0
-    ? 'pass'
-    : value === 1
-      ? 'fail'
-      : value === 2
-        ? 'error'
-        : value === 3
-          ? 'syntaxError'
+  ? value === 0 ? 'pass'
+    : value === 1 ? 'fail'
+      : value === 2 ? 'error'
+        : value === 3 ? 'syntaxError'
           : 'no status'
   : value;
 
