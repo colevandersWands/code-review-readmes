@@ -264,15 +264,6 @@ const generateReadmes = (report) => {
   const top = `# ${dirName(report.path)} - ${interpret('status', report.status)}\n\n`
     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
 
-  const dirList = report.dirs
-    ? report.dirs
-      .map(dir => {
-        const relPath = dirName(dir.path);
-        return `* [${relPath}](./${relPath}README.md) - ${interpret('status', dir.status)}`;
-      })
-      .reduce((list, li) => list + li + '\n', '')
-    : '';
-
   const fileList = report.files
     ? report.files
       .map(file => {
@@ -283,12 +274,27 @@ const generateReadmes = (report) => {
       .reduce((list, li) => list + li + '\n', '')
     : '';
 
-  const index = dirList + fileList;
-
-  const tableOfContents = index
-    ? `### Exercises:\n\n` + index
-    + '* [../README.md](../README.md)\n'
+  const exerciseIndex = fileList
+    ? `### exercises\n\n` + fileList + '\n'
     : '';
+
+  const dirList = report.dirs
+    ? report.dirs
+      .map(dir => {
+        const relPath = dirName(dir.path);
+        return `* [${relPath}](./${relPath}README.md) - ${interpret('status', dir.status)}`;
+      })
+      .reduce((list, li) => list + li + '\n', '')
+    : '';
+
+  const subDirIndex = dirList
+    ? `### sub-directories\n\n` + dirList + '\n'
+    : '';
+
+
+  const index = '* [../README.md](../README.md)\n'
+    + exerciseIndex
+    + subDirIndex;
 
   const fileSections = !report.files
     ? ''
@@ -297,7 +303,7 @@ const generateReadmes = (report) => {
       .reduce((body, section) => body + section + '\n', '');
 
   const newReadme = top + '\n\n'
-    + tableOfContents + '\n'
+    + index + '\n'
     + fileSections;
 
   fs.writeFileSync(
@@ -415,16 +421,8 @@ const generateIndexHtml = (report) => {
     <code>${NOW.toDateString()}, ${NOW.toLocaleTimeString()}</code>
   </header>`;
 
-  const dirLis = report.dirs
-    ? report.dirs
-      .map(dir => {
-        const relPath = dirName(dir.path);
-        return `      <li><a href='./${relPath}index.html'>${relPath}</a> - ${interpret('status', dir.status)}</li>`;
-      })
-      .reduce((lis, li) => lis + li + '\n', '')
-    : '';
 
-  const fileLis = report.files
+  const fileList = report.files
     ? report.files
       .map(file => {
         const relPath = file.path.split('/').pop();
@@ -433,18 +431,33 @@ const generateIndexHtml = (report) => {
       .reduce((lis, li) => lis + li + '\n', '')
     : '';
 
-  const index = "<ul>\n"
-    + dirLis
-    + fileLis + '\n'
-    + '      <li><a href="../index.html">../index.html</a></li>\n'
-    + '    </ul>';
-
-  const tableOfContents = index
-    ? ("<section id='table-of-contents'>\n"
-      + "    <h3>Exercises:</h3>\n"
-      + '    ' + index + '\n'
-      + "  </section>")
+  const exercisesIndex = fileList
+    ? ('  <h3>exercises</h3\n'
+      + "  <ul>\n"
+      + fileList + '\n'
+      + '  </ul>\n\n')
     : '';
+
+  const dirList = report.dirs
+    ? report.dirs
+      .map(dir => {
+        const relPath = dirName(dir.path);
+        return `      <li><a href='./${relPath}index.html'>${relPath}</a> - ${interpret('status', dir.status)}</li>`;
+      })
+      .reduce((lis, li) => lis + li + '\n', '')
+    : '';
+
+  const subDirIndex = dirList
+    ? ('  <h3>sub-directories</h3\n'
+      + "  <ul>\n"
+      + dirList + '\n'
+      + '  </ul>\n\n')
+    : '';
+
+
+  const index = '<br>\n\n  <li><a href="../index.html">../index.html</a></li>\n\n'
+    + exercisesIndex
+    + subDirIndex;
 
   const fileSections = !report.files
     ? ''
@@ -453,8 +466,8 @@ const generateIndexHtml = (report) => {
       .reduce((body, section) => body + section + '\n  <br>\n', '');
 
   const body = '<body>\n\n'
-    + '  ' + header + '\n'
-    + '  ' + tableOfContents + '\n'
+    + '  ' + header + '\n\n'
+    + '  ' + index + '<br>'
     + '  ' + fileSections + '\n'
     + '</body>\n';
 
@@ -465,15 +478,22 @@ const generateIndexHtml = (report) => {
     + "</html>";
 
 
-  fs.writeFile(
+  fs.writeFileSync(
     report.path + 'index.html',
     newIndex,
-    (err) => { if (err) { console.log(err) } }
+    // (err) => { if (err) { console.log(err) } }
   );
 
 };
 
 generateIndexHtml(evaluation);
 
+const topLevelIndexSource = fs.readFileSync('./index.html', 'utf-8');
+const cleanedTopLevelIndexSource = topLevelIndexSource
+  .split('<br>\n\n  <li><a href="../index.html">../index.html</a></li>\n\n').join('');
+fs.writeFile('./index.html',
+  cleanedTopLevelIndexSource,
+  (err) => { if (err) { console.log(err) } }
+);
 
 console.log('... done!\n');

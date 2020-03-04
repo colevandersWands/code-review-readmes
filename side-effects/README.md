@@ -1,14 +1,15 @@
 # side-effects/ - syntaxError
 
-> Wed Mar 04 2020, 10:46:27 AM
+> Wed Mar 04 2020, 2:05:28 PM
 
-### Exercises:
+* [../README.md](../README.md)
+### exercises
 
 * [avoiding-side-effects.js](#avoiding-side-effectsjs---syntaxError) - syntaxError
 * [challenges.js](#challengesjs---fail) - fail
 * [copying-arrays-and-objects.js](#copying-arrays-and-objectsjs---pass) - pass
 * [what-are-they.js](#what-are-theyjs---pass) - pass
-* [../README.md](../README.md)
+
 
 ---
 

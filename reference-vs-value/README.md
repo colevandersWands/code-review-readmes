@@ -1,14 +1,18 @@
 # reference-vs-value/ - error
 
-> Wed Mar 04 2020, 10:46:27 AM
+> Wed Mar 04 2020, 2:05:28 PM
 
-### Exercises:
+* [../README.md](../README.md)
+### exercises
 
-* [challenges/](./challenges/README.md) - error
 * [comparing.js](#comparingjs---error) - error
 * [const-reference-types.js](#const-reference-typesjs---error) - error
 * [sharing-a-reference.js](#sharing-a-referencejs---pass) - pass
-* [../README.md](../README.md)
+
+### sub-directories
+
+* [challenges/](./challenges/README.md) - error
+
 
 ---
 

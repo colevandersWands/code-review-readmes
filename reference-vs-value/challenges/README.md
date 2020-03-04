@@ -1,14 +1,15 @@
 # challenges/ - error
 
-> Wed Mar 04 2020, 10:46:27 AM
+> Wed Mar 04 2020, 2:05:28 PM
 
-### Exercises:
+* [../README.md](../README.md)
+### exercises
 
 * [array-1.js](#array-1js---error) - error
 * [array-2.js](#array-2js---error) - error
 * [object-1.js](#object-1js---error) - error
 * [object-2.js](#object-2js---error) - error
-* [../README.md](../README.md)
+
 
 ---
 
