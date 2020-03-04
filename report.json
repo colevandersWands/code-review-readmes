@@ -1,13 +1,13 @@
 {
   "path": "./",
   "status": 3,
-  "time": "2020-03-04T13:05:28.895Z",
+  "time": "2020-03-04T14:15:43.467Z",
   "files": null,
   "dirs": [
     {
       "path": "./reference-vs-value/",
       "status": 2,
-      "time": "2020-03-04T13:05:28.884Z",
+      "time": "2020-03-04T14:15:43.459Z",
       "files": [
         {
           "path": "./reference-vs-value/comparing.js",
@@ -29,7 +29,7 @@
         {
           "path": "./reference-vs-value/challenges/",
           "status": 2,
-          "time": "2020-03-04T13:05:28.883Z",
+          "time": "2020-03-04T14:15:43.459Z",
           "files": [
             {
               "path": "./reference-vs-value/challenges/array-1.js",
@@ -59,7 +59,7 @@
     {
       "path": "./side-effects/",
       "status": 3,
-      "time": "2020-03-04T13:05:28.892Z",
+      "time": "2020-03-04T14:15:43.466Z",
       "files": [
         {
           "path": "./side-effects/avoiding-side-effects.js",
@@ -86,12 +86,12 @@
     },
     {
       "path": "./test-cases/",
-      "status": 1,
-      "time": "2020-03-04T13:05:28.895Z",
+      "status": 0,
+      "time": "2020-03-04T14:15:43.467Z",
       "files": [
         {
           "path": "./test-cases/evens.js",
-          "status": 1,
+          "status": 0,
           "source": "const findEvensArray1 = ['.', '1', '2', ':'];\nconst findEvensArray2 = ['1', 'two', 'three', '10'];\nconst findEvensArray3 = ['one', '2', '', 'NaN'];\nconst findEvensArray4 = ['.', 1, 2, NaN];\n\nconst oddsToNotFind = ['1', '3', '5'];\nconst evensToFind = ['2', '4', '6'];\n\nconst findAllEvensTests = [\n  { name: 'Test 1', args: [findEvensArray1], expected: ['2'] },\n  { name: 'Test 2', args: [findEvensArray2], expected: ['10'] },\n  { name: 'Test 3', args: [findEvensArray3], expected: ['2', ''] },\n  { name: 'Test 4', args: [findEvensArray4], expected: null },\n  { name: 'Test 5', args: [[1, 2, 3]], expected: null },\n  { name: 'Test 6', args: [oddsToNotFind], expected: [] },\n  { name: 'Test 7', args: [evensToFind], expected: ['2', '4', '6'] },\n];\n\nconst findAllEvens = (arr) => {\n  if (arr.length > 3) {\n    return null;\n  } else {\n    return arr;\n  };\n};\n\nfor (let test of findAllEvensTests) {\n  const expected = JSON.stringify(test.expected);\n  const actual = JSON.stringify(findAllEvens(...test.args));\n  console.assert(actual === expected, test.name + ', actual -> ' + actual);\n};\n"
         }
       ],

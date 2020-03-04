@@ -1,71 +1,52 @@
-<!DOCTYPE html>
-<html lang='en'>
+# reference-vs-value/ - error
 
-<head>
-  <meta charset='utf8'>
-  <title>reference-vs-value/</title>
-  <style>
-    textarea {
-      height: 75vh;
-      width: 95vw;
-    }
-  </style>
-  <script>
-    function inJsTutor(id) {
-      const source = document.getElementById(id).value;
-      const encoded = encodeURIComponent(source);
-      const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
-      const deTabbed = sanitized.replace(/%09/g, '%20%20');
-      const jsTutorUrl = "http://www.pythontutor.com/live.html#code="
-        + deTabbed
-        + "&cumulative=false&curInstr=2&heapPrimitives=false&mode=display&origin=opt-live.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false";
-      window.open(jsTutorUrl, '_blank');
-    }
-  </script>
-  <script>
-    function inDebugger(id) {
-      const source = document.getElementById(id).value;
-      const debuggered = "debugger; // injected by review.js\n\n" + source;
-      eval(debuggered);
-    }
-  </script>
-</head>
+> Wed Mar 04 2020, 3:15:43 PM
 
-<body>
+* [../REVIEW.md](../REVIEW.md)
+### exercises
 
-  <header>
-    <h1 id='top'>reference-vs-value/ - error</h1>
-    <code>Wed Mar 04 2020, 3:15:43 PM</code>
-  </header>
+* [comparing.js](#comparingjs---error) - error
+* [const-reference-types.js](#const-reference-typesjs---error) - error
+* [sharing-a-reference.js](#sharing-a-referencejs---pass) - pass
 
-  <br>
+### sub-directories
 
-  <li><a href="../index.html">../index.html</a></li>
+* [challenges/](./challenges/REVIEW.md) - error
 
-  <h3>exercises</h3
-  <ul>
-      <li><a href='#comparing.js'>comparing.js</a> - error</li>
-      <li><a href='#const-reference-types.js'>const-reference-types.js</a> - error</li>
-      <li><a href='#sharing-a-reference.js'>sharing-a-reference.js</a> - pass</li>
 
-  </ul>
+---
 
-  <h3>sub-directories</h3
-  <ul>
-      <li><a href='./challenges/index.html'>challenges/</a> - error</li>
+## [comparing.js](./comparing.js) - error
 
-  </ul>
+```txt
++ PASS: alsoArrayOne === arrayOne
++ PASS: alsoArrayOne[0] === arrayOne[0]
++ PASS: alsoArrayOne[1] === arrayOne[1]
++ PASS: arrayTwo !== arrayOne
++ PASS: arrayTwo[0] === arrayOne[0]
++ PASS: arrayTwo[1] === arrayOne[1]
++ PASS: arrayTwo does not change when arrayOne does
+- FAIL: arrayOne does not change when arrayTwo does
++ PASS: alsoObjectOne === objectOne
++ PASS: alsoObjectOne.first === objectOne.first
++ PASS: alsoObjectOne.second === objectOne.second
++ PASS: objectTwo !== objectOne
++ PASS: objectTwo.first === objectOne.first
++ PASS: objectTwo.second === objectOne.second
+x ReferenceError: alsoObjectTwo is not defined
+    at Object.<anonymous> ( [...] /reference-vs-value/comparing.js:41:16)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
+    at Module.require (internal/modules/cjs/loader.js:683:19)
+    at require (internal/modules/cjs/helpers.js:16:16)
+    at evaluateFile ( [...] /review.js:79:5)
+    at  [...] /review.js:106:24
+    at Array.map (<anonymous>)
+```
 
-<br>  
-  <hr>
-
-  <section  id="comparing.js">
-    <h2>comparing.js - error</h2>
-    <button onclick="inDebugger('./reference-vs-value/comparing.js')">step through in debugger</button>
-    <button onclick="inJsTutor('./reference-vs-value/comparing.js')">open in JS Tutor</button>
-    <br>
-    <br>
-    <textarea id="./reference-vs-value/comparing.js">
+```js
 // comparing objects and arrays with === is based on reference
 // comparisons are true when they reference the same thing in memory
 // psst. JS Tutor will help a lot with this example
@@ -110,22 +91,29 @@ console.assert(alsoObjectTwo.m === undefined, 'objectTwo does not change when ob
 objectTwo.h = 'uh?';
 console.assert(objectOne.h === undefined, 'objectOne does not change when objectTwo does');
 
-    </textarea>
-    <br>
-    <br>
-    <a href='#top'>TOP</a>
-  </section>
-  <br>
+```
 
-  <hr>
+[TOP](#REVIEW)
 
-  <section  id="const-reference-types.js">
-    <h2>const-reference-types.js - error</h2>
-    <button onclick="inDebugger('./reference-vs-value/const-reference-types.js')">step through in debugger</button>
-    <button onclick="inJsTutor('./reference-vs-value/const-reference-types.js')">open in JS Tutor</button>
-    <br>
-    <br>
-    <textarea id="./reference-vs-value/const-reference-types.js">
+---
+
+## [const-reference-types.js](./const-reference-types.js) - error
+
+```txt
+x TypeError: Assignment to constant variable.
+    at Object.<anonymous> ( [...] /reference-vs-value/const-reference-types.js:8:16)
+    at Module._compile (internal/modules/cjs/loader.js:777:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:788:10)
+    at Module.load (internal/modules/cjs/loader.js:643:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:556:12)
+    at Module.require (internal/modules/cjs/loader.js:683:19)
+    at require (internal/modules/cjs/helpers.js:16:16)
+    at evaluateFile ( [...] /review.js:79:5)
+    at  [...] /review.js:106:24
+    at Array.map (<anonymous>)
+```
+
+```js
 // using const with arrays and objects is like locking a bag
 //  someone can't steal your bag because it's locked in place
 //  but they can still take things out or put things in
@@ -140,22 +128,26 @@ constantArray[0] = 6; // no error
 constantArray[1] = 7; // no error
 constantArray = [6]; // error!
 
-    </textarea>
-    <br>
-    <br>
-    <a href='#top'>TOP</a>
-  </section>
-  <br>
+```
 
-  <hr>
+[TOP](#REVIEW)
 
-  <section  id="sharing-a-reference.js">
-    <h2>sharing-a-reference.js - pass</h2>
-    <button onclick="inDebugger('./reference-vs-value/sharing-a-reference.js')">step through in debugger</button>
-    <button onclick="inJsTutor('./reference-vs-value/sharing-a-reference.js')">open in JS Tutor</button>
-    <br>
-    <br>
-    <textarea id="./reference-vs-value/sharing-a-reference.js">
+---
+
+## [sharing-a-reference.js](./sharing-a-reference.js) - pass
+
+```txt
++ PASS: new5 stores has been modified
++ PASS: original variable was not modified
++ PASS: objectOne has changed after modifying objectTwo
++ PASS: objectTwo has changed after modifying objectOne
++ PASS: reassigning objectOne does not affect objectTwo
++ PASS: arrayOne has changed after modifying arrayTwo
++ PASS: arrayTwo has changed after modifying arrayOne
++ PASS: reassigning arrayOne does not affect arrayTwo
+```
+
+```js
 // primitives are stored "by value", connected to one variable
 //  assigning a primitive to a new variable makes a copy of it
 //  modifying the new variable does not change the old one
@@ -191,13 +183,7 @@ console.assert(arrayTwo !== undefined, 'reassigning arrayOne does not affect arr
 
 
 
-    </textarea>
-    <br>
-    <br>
-    <a href='#top'>TOP</a>
-  </section>
-  <br>
+```
 
-</body>
+[TOP](#REVIEW)
 
-</html>

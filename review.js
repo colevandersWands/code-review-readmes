@@ -61,17 +61,20 @@ const evaluateFile = (path) => {
   console.log('\n... ' + path + '\n');
   let report = [];
   const nativeAssert = console.assert;
+  let hasFailed = false;
   console.assert = function () {
     arguments = Array.from(arguments);
     nativeAssert(...arguments);
     report.push({
       assertion: arguments
     });
-    if (!arguments[0]) {
+    if (!arguments[0] || hasFailed) {
       status = 1;
+    } else {
+      status = 0;
     }
   }
-  let status = 0;
+  let status = -1;
   try {
     require(path); // using require for cleaner callstack
     // const code = fs.readFileSync(path, 'utf-8');
@@ -113,7 +116,7 @@ const evaluateDirectory = (toReport, path) => {
       .reduce((stat, entry) => entry.status > stat
         ? entry.status
         : stat,
-        0)
+        -1)
     : -1;
 
   const dirsStatus = statusOf(dirs);
@@ -180,11 +183,11 @@ const writeJsonReportsLight = (report) => {
 writeJsonReportsLight(evaluation);
 
 
-console.log('\n... generating READMEs\n');
+console.log('\n... generating REVIEWs\n');
 
 
 const interpret = (key, value) => key === 'status'
-  ? value === -1 ? 'no status'
+  ? value === -1 ? ''
     : value === 0 ? 'pass'
       : value === 1 ? 'fail'
         : value === 2 ? 'error'
@@ -232,7 +235,7 @@ const generateFileSectionMd = (fileReport) => {
 
   const source = '```js\n' + fileReport.source + '\n```';
 
-  const topLink = '[TOP](#readme)';
+  const topLink = '[TOP](#REVIEW)';
 
   return divider + '\n\n'
     + header + '\n\n'
@@ -244,11 +247,11 @@ const generateFileSectionMd = (fileReport) => {
 
 
 
-const generateReadmes = (report) => {
+const generateREVIEWs = (report) => {
 
   if (report.dirs) {
     report.dirs
-      .forEach(report => generateReadmes(report));
+      .forEach(report => generateREVIEWs(report));
   }
 
 
@@ -282,7 +285,7 @@ const generateReadmes = (report) => {
     ? report.dirs
       .map(dir => {
         const relPath = dirName(dir.path);
-        return `* [${relPath}](./${relPath}README.md) - ${interpret('status', dir.status)}`;
+        return `* [${relPath}](./${relPath}REVIEW.md) - ${interpret('status', dir.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';
@@ -292,7 +295,7 @@ const generateReadmes = (report) => {
     : '';
 
 
-  const index = '* [../README.md](../README.md)\n'
+  const index = '* [../REVIEW.md](../REVIEW.md)\n'
     + exerciseIndex
     + subDirIndex;
 
@@ -302,25 +305,25 @@ const generateReadmes = (report) => {
       .map(fileReport => generateFileSectionMd(fileReport))
       .reduce((body, section) => body + section + '\n', '');
 
-  const newReadme = top + '\n\n'
+  const newREVIEW = top + '\n\n'
     + index + '\n'
     + fileSections;
 
   fs.writeFileSync(
-    report.path + 'README.md',
-    newReadme,
+    report.path + 'REVIEW.md',
+    newREVIEW,
     // (err) => { if (err) { console.log(err) } }
   );
 
 };
 
-generateReadmes(evaluation);
+generateREVIEWs(evaluation);
 
-const topLevelReadmeSource = fs.readFileSync('./README.md', 'utf-8');
-const cleanedTopLevelReadmeSource = topLevelReadmeSource
-  .split('* [../README.md](../README.md)\n').join('');
-fs.writeFile('./README.md',
-  cleanedTopLevelReadmeSource,
+const topLevelREVIEWSource = fs.readFileSync('./REVIEW.md', 'utf-8');
+const cleanedTopLevelREVIEWSource = topLevelREVIEWSource
+  .split('* [../REVIEW.md](../REVIEW.md)\n').join('');
+fs.writeFile('./REVIEW.md',
+  cleanedTopLevelREVIEWSource,
   (err) => { if (err) { console.log(err) } }
 );
 
