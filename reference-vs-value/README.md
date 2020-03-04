@@ -1,6 +1,6 @@
 # reference-vs-value/ - error
 
-> Wed Mar 04 2020, 8:39:27 AM
+> Wed Mar 04 2020, 10:46:27 AM
 
 ### Exercises:
 
@@ -37,8 +37,8 @@ x ReferenceError: alsoObjectTwo is not defined
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:74:5)
-    at  [...] /review.js:100:24
+    at evaluateFile ( [...] /review.js:76:5)
+    at  [...] /review.js:103:24
     at Array.map (<anonymous>)
 ```
 
@@ -104,8 +104,8 @@ x TypeError: Assignment to constant variable.
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:74:5)
-    at  [...] /review.js:100:24
+    at evaluateFile ( [...] /review.js:76:5)
+    at  [...] /review.js:103:24
     at Array.map (<anonymous>)
 ```
 

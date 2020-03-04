@@ -7,7 +7,8 @@ const path = require("path")
 
 const BASE_DIRECTORY = process.argv[2] || './';
 
-// --- build virtual directory of JS files ---
+
+console.log('\n... scanning for all .js files\n');
 
 const registerDirectory = function (dirPath, oldPath) {
   paths = fs.readdirSync(dirPath)
@@ -48,7 +49,7 @@ const allJsFiles = registerDirectory(BASE_DIRECTORY);
 // console.log(JSON.stringify(allJsFiles, null, '  '));
 
 
-// --- generate report on all registered JS files ---
+console.log('\n... evaluating .js files & building report\n');
 
 /* statuses
   0: pass
@@ -57,6 +58,7 @@ const allJsFiles = registerDirectory(BASE_DIRECTORY);
   3: syntax error
 */
 const evaluateFile = (path) => {
+  console.log('\n... ' + path + '\n');
   let report = [];
   const nativeAssert = console.assert;
   console.assert = function () {
@@ -94,6 +96,7 @@ const evaluateFile = (path) => {
 
 const evaluateDirectory = (toReport, path) => {
   path = path || toReport.path || './';
+  console.log('\n... ' + path);
 
   const files = toReport.files
     ? toReport.files
@@ -137,7 +140,19 @@ const evaluation = evaluateDirectory(allJsFiles);
 
 
 
-// --- write reports into each subdirectory ---
+
+console.log('\n... generating report.json\n');
+
+
+const interpret = (key, value) => key === 'status'
+  ? value === -1 ? 'no status'
+    : value === 0 ? 'pass'
+      : value === 1 ? 'fail'
+        : value === 2 ? 'error'
+          : value === 3 ? 'syntaxError'
+            : 'unknown status'
+  : value;
+
 
 const writeJsonReportsRecursive = (report) => {
 
@@ -155,17 +170,14 @@ const writeJsonReportsRecursive = (report) => {
 };
 
 
-const interpret = (key, value) => key === 'status'
-  ? value === 0 ? 'pass'
-    : value === 1 ? 'fail'
-      : value === 2 ? 'error'
-        : value === 3 ? 'syntaxError'
-          : 'no status'
-  : value;
+const writeJsonReportsInterpretable = (report) => {
 
-const writeJsonReportsLight = (report) => {
-
-  const reportCopy = JSON.parse(JSON.stringify(report));
+  const reportCopy = JSON.stringify(
+    report,
+    (key, value) => key === 'report'
+      ? undefined
+      : value,
+    '  ');
   reportCopy.interpret = interpret.toString();
 
   const reportMinusFileReports = JSON.stringify(
@@ -182,10 +194,26 @@ const writeJsonReportsLight = (report) => {
   );
 }
 
+const writeJsonReportsLight = (report) => {
+
+  const strippedReport = JSON.stringify(
+    report,
+    (key, value) => key === 'report'
+      ? undefined
+      : value,
+    '  ');
+
+  fs.writeFile(
+    report.path + 'report.json',
+    strippedReport,
+    (err) => { if (err) { console.log(err) } }
+  );
+}
+
 writeJsonReportsLight(evaluation);
 
 
-// --- write README's into each subdirectory ---
+console.log('\n... generating READMEs\n');
 
 
 const generateFileSectionMd = (fileReport) => {
@@ -313,7 +341,8 @@ fs.writeFile('./README.md',
 );
 
 
-// --- generate index.html's ---
+
+console.log('\n... generating index.html\'s\n');
 
 const generateFileSectionHtml = (fileReport) => {
 
@@ -469,3 +498,4 @@ const generateIndexHtml = (report) => {
 generateIndexHtml(evaluation);
 
 
+console.log('... done!\n');
