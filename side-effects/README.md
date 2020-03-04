@@ -1,6 +1,6 @@
 # side-effects/ - syntaxError
 
-> Tue Mar 03 2020, 11:20:03 PM
+> Wed Mar 04 2020, 8:39:27 AM
 
 ### Exercises:
 
@@ -26,10 +26,10 @@ SyntaxError: Unexpected token ,
     at Function.Module._load (internal/modules/cjs/loader.js:556:12)
     at Module.require (internal/modules/cjs/loader.js:683:19)
     at require (internal/modules/cjs/helpers.js:16:16)
-    at evaluateFile ( [...] /review.js:70:5)
-    at  [...] /review.js:96:24
+    at evaluateFile ( [...] /review.js:74:5)
+    at  [...] /review.js:100:24
     at Array.map (<anonymous>)
-    at evaluateDirectory ( [...] /review.js:96:8)
+    at evaluateDirectory ( [...] /review.js:100:8)
 ```
 
 ```js

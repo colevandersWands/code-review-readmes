@@ -1,3 +1,7 @@
+// todo: reviewSource button
+// todo: rearrange files & dirs in list.  separate lists? clearer labeling?
+
+
 const fs = require("fs")
 const path = require("path")
 
@@ -151,9 +155,25 @@ const writeJsonReportsRecursive = (report) => {
 };
 
 
+const interpret = (key, value) => key === 'status'
+  ? value === 0
+    ? 'pass'
+    : value === 1
+      ? 'fail'
+      : value === 2
+        ? 'error'
+        : value === 3
+          ? 'syntaxError'
+          : 'no status'
+  : value;
+
 const writeJsonReportsLight = (report) => {
+
+  const reportCopy = JSON.parse(JSON.stringify(report));
+  reportCopy.interpret = interpret.toString();
+
   const reportMinusFileReports = JSON.stringify(
-    report,
+    reportCopy,
     (key, value) => key === 'report'
       ? undefined
       : value
@@ -171,22 +191,13 @@ writeJsonReportsLight(evaluation);
 
 // --- write README's into each subdirectory ---
 
-const interpret = status => status === 0
-  ? 'pass'
-  : status === 1
-    ? 'fail'
-    : status === 2
-      ? 'error'
-      : status === 3
-        ? 'syntaxError'
-        : 'no status';
 
 const generateFileSectionMd = (fileReport) => {
 
   const divider = '---';
 
   const relPath = fileReport.path.split('/').pop();
-  const header = `## [${relPath}](./${relPath}) - ${interpret(fileReport.status)}`;
+  const header = `## [${relPath}](./${relPath}) - ${interpret('status', fileReport.status)}`;
 
   // const encoded = encodeURIComponent(fileReport.source);
   // const sanitized = encoded.replace(/\(/g, '%28').replace(/\)/g, '%29');
@@ -248,14 +259,14 @@ const generateReadmes = (report) => {
     return pathArr[pathArr.length - 1] + '/';
   }
 
-  const top = `# ${dirName(report.path)} - ${interpret(report.status)}\n\n`
+  const top = `# ${dirName(report.path)} - ${interpret('status', report.status)}\n\n`
     + `> ${NOW.toDateString()}, ${NOW.toLocaleTimeString()}`;
 
   const dirList = report.dirs
     ? report.dirs
       .map(dir => {
         const relPath = dirName(dir.path);
-        return `* [${relPath}](./${relPath}README.md) - ${interpret(dir.status)}`;
+        return `* [${relPath}](./${relPath}README.md) - ${interpret('status', dir.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';
@@ -265,7 +276,7 @@ const generateReadmes = (report) => {
       .map(file => {
         const relPath = file.path.split('/').pop();
         const localHref = relPath.split('.').join('');
-        return `* [${relPath}](#${localHref}---${interpret(file.status)}) - ${interpret(file.status)}`;
+        return `* [${relPath}](#${localHref}---${interpret('status', file.status)}) - ${interpret('status', file.status)}`;
       })
       .reduce((list, li) => list + li + '\n', '')
     : '';
@@ -313,7 +324,7 @@ const generateFileSectionHtml = (fileReport) => {
   const divider = '<hr>';
 
   const relPath = fileReport.path.split('/').pop();
-  const header = `<h2>${relPath} - ${interpret(fileReport.status)}</h2>`;
+  const header = `<h2>${relPath} - ${interpret('status', fileReport.status)}</h2>`;
 
 
   const debuggerButton = `<button onclick="inDebugger('${fileReport.path}')">step through in debugger</button>`;
@@ -397,7 +408,7 @@ const generateIndexHtml = (report) => {
     + '</head>\n';
 
   const header = `<header>
-    <h1 id='top'>${dirName(report.path)} - ${interpret(report.status)}</h1>
+    <h1 id='top'>${dirName(report.path)} - ${interpret('status', report.status)}</h1>
     <code>${NOW.toDateString()}, ${NOW.toLocaleTimeString()}</code>
   </header>`;
 
@@ -405,7 +416,7 @@ const generateIndexHtml = (report) => {
     ? report.dirs
       .map(dir => {
         const relPath = dirName(dir.path);
-        return `      <li><a href='./${relPath}index.html'>${relPath}</a> - ${interpret(dir.status)}</li>`;
+        return `      <li><a href='./${relPath}index.html'>${relPath}</a> - ${interpret('status', dir.status)}</li>`;
       })
       .reduce((lis, li) => lis + li + '\n', '')
     : '';
@@ -414,7 +425,7 @@ const generateIndexHtml = (report) => {
     ? report.files
       .map(file => {
         const relPath = file.path.split('/').pop();
-        return `      <li><a href='#${relPath}'>${relPath}</a> - ${interpret(file.status)}</li>`;
+        return `      <li><a href='#${relPath}'>${relPath}</a> - ${interpret('status', file.status)}</li>`;
       })
       .reduce((lis, li) => lis + li + '\n', '')
     : '';

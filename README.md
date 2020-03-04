@@ -1,6 +1,6 @@
 # ./ - syntaxError
 
-> Tue Mar 03 2020, 11:20:03 PM
+> Wed Mar 04 2020, 8:39:27 AM
 
 ### Exercises:
 
