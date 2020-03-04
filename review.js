@@ -235,7 +235,7 @@ const generateFileSectionMd = (fileReport) => {
 
   const source = '```js\n' + fileReport.source + '\n```';
 
-  const topLink = '[TOP](#REVIEW)';
+  const topLink = '[TOP](#readme)';
 
   return divider + '\n\n'
     + header + '\n\n'
