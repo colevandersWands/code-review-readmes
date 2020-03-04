@@ -144,16 +144,6 @@ const evaluation = evaluateDirectory(allJsFiles);
 console.log('\n... generating report.json\n');
 
 
-const interpret = (key, value) => key === 'status'
-  ? value === -1 ? 'no status'
-    : value === 0 ? 'pass'
-      : value === 1 ? 'fail'
-        : value === 2 ? 'error'
-          : value === 3 ? 'syntaxError'
-            : 'unknown status'
-  : value;
-
-
 const writeJsonReportsRecursive = (report) => {
 
   if (report.dirs) {
@@ -170,29 +160,6 @@ const writeJsonReportsRecursive = (report) => {
 };
 
 
-const writeJsonReportsInterpretable = (report) => {
-
-  const reportCopy = JSON.stringify(
-    report,
-    (key, value) => key === 'report'
-      ? undefined
-      : value,
-    '  ');
-  reportCopy.interpret = interpret.toString();
-
-  const reportMinusFileReports = JSON.stringify(
-    reportCopy,
-    (key, value) => key === 'report'
-      ? undefined
-      : value
-    , '  ');
-
-  fs.writeFile(
-    report.path + 'report.json',
-    reportMinusFileReports,
-    (err) => { if (err) { console.log(err) } }
-  );
-}
 
 const writeJsonReportsLight = (report) => {
 
@@ -214,6 +181,17 @@ writeJsonReportsLight(evaluation);
 
 
 console.log('\n... generating READMEs\n');
+
+
+const interpret = (key, value) => key === 'status'
+  ? value === -1 ? 'no status'
+    : value === 0 ? 'pass'
+      : value === 1 ? 'fail'
+        : value === 2 ? 'error'
+          : value === 3 ? 'syntaxError'
+            : 'unknown status'
+  : value;
+
 
 
 const generateFileSectionMd = (fileReport) => {
